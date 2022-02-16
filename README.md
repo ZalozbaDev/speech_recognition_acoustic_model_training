@@ -2,6 +2,11 @@
 
 ## Acoustic model generation
 
+This procedure allows to generate acoustic models for speech recognition from scratch. The following steps need to be
+performed (see directory content for details):
+
+* step1_model_adaptation
+
 
 
 ## Authors
