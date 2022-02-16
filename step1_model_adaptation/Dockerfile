@@ -65,11 +65,22 @@ RUN cd dLabPro/programs/python && ./setup.py build && ./setup.py install
 # create folder and copy all files
 RUN mkdir /adaptation
 
-# ADD 
+ADD hsb.yaml /adaptation
+ADD mapAM.py /adaptation
+
+RUN cp corpus_creation/uasr_configurations/info/classes.txt /adaptation/
+RUN cp db-hsb-asr/model/default/3_20.hmm                    /adaptation/
+RUN cp db-hsb-asr/model/default/feainfo.object              /adaptation/
+
+# now actually run the adaptation
+RUN cd /adaptation/ && chmod 755 mapAM.py && UASR_HOME="dummy" ./mapAM.py hsb.yaml
 
 # just a default instruction, might be handy
 CMD ["/bin/bash"]
 
-# how to use this container to run the tool:
+#########################################################
+# how to fetch the resulting model from the container
+#########################################################
+
 ## mkdir -p output && rm -rf ./output/* 
-## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ --mount type=bind,source="$(pwd)"/input,target=/input/ -it speech_recognition_acoustic_model_training_step1 /input/runme.sh
+## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /adaptation/hsb.hmm /output/
