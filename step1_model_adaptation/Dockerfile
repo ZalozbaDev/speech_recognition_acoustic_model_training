@@ -1,0 +1,44 @@
+FROM debian:bullseye-slim
+MAINTAINER Daniel Sobe <daniel.sobe@sorben.com>
+
+# normal call
+# docker build -t speech_recognition_acoustic_model_training_step1 .
+
+# rebuild from scratch
+# docker build -t speech_recognition_acoustic_model_training_step1 . --no-cache
+
+# enable in case you want to install tools from contrib or non-free
+# RUN sed -i 's/ main/ main contrib non-free/' /etc/apt/sources.list
+
+RUN apt update
+
+# generic tools install 
+RUN apt install -y g++ make git procps nano
+
+############################################
+# Generate "classes.txt" file from scratch
+############################################
+
+# install tools for running "BASgenerator.py"
+RUN apt install -y python3 python3-numpy python3-matplotlib python3-yaml
+
+# clone the repo that contains all data for generating the "classes.txt" file
+RUN git clone https://github.com/ZalozbaDev/speech_recognition_corpus_creation.git speech_recognition_corpus_creation
+RUN cd speech_recognition_corpus_creation && git checkout 73d51bdb710ba5692f93c93c671e0e4de6710c2d
+
+RUN mkdir corpus_creation/ && cp /speech_recognition_corpus_creation/examples/ex5/input/* corpus_creation/
+RUN cd corpus_creation/ && python3 BASgenerator.py HSB.yaml
+
+
+
+
+
+
+
+
+# just a default instruction, might be handy
+CMD ["/bin/bash"]
+
+# how to use this container to run the tool:
+## mkdir -p output && rm -rf ./output/* 
+## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ --mount type=bind,source="$(pwd)"/input,target=/input/ -it speech_recognition_acoustic_model_training_step1 /input/runme.sh
