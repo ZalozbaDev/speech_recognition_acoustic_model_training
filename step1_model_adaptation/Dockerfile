@@ -27,14 +27,45 @@ RUN git clone https://github.com/ZalozbaDev/speech_recognition_corpus_creation.g
 RUN cd speech_recognition_corpus_creation && git checkout 73d51bdb710ba5692f93c93c671e0e4de6710c2d
 
 RUN mkdir corpus_creation/ && cp /speech_recognition_corpus_creation/examples/ex5/input/* corpus_creation/
-RUN cd corpus_creation/ && python3 BASgenerator.py HSB.yaml
+RUN cd corpus_creation/ && python3 BASgenerator.py HSB.yaml || /bin/true
 
+############################################
+# Fetch german acoustic model
+############################################
 
+RUN git clone https://github.com/ZalozbaDev/db-hsb-asr.git db-hsb-asr
+RUN cd db-hsb-asr && git checkout 8e86fb8171b58cc794e585433e4da7d2ea88a438
 
+##########################################
+# Build dlabpro software (python wrapper)
+##########################################
 
+RUN git clone https://github.com/ZalozbaDev/dLabPro.git dLabPro
+RUN cd dLabPro && git checkout 297f1dc7a6b86a7ed786f845e93e327576e913ae
 
+# add a compile fix for Debian Bullseye
+#RUN git config --global user.email "daniel.sobe@sorben.com"
+#RUN git config --global user.name "Daniel Sobe"
+#RUN cd dLabPro && git cherry-pick 29c71b09c61626a30e52c84e9b9ac0586ec2bd0d
 
+# need to build the C++ part first
+RUN apt install -y libreadline-dev portaudio19-dev
+RUN cd dLabPro && make -C programs/dlabpro RELEASE
 
+# additional python deps for building the wrapper
+RUN apt install -y python3-distutils cython3
+
+# now build the python wrapper
+RUN cd dLabPro/programs/python && ./setup.py build && ./setup.py install
+
+##########################################################
+# Collect all files and actually run the model adaptation
+##########################################################
+
+# create folder and copy all files
+RUN mkdir /adaptation
+
+# ADD 
 
 # just a default instruction, might be handy
 CMD ["/bin/bash"]
