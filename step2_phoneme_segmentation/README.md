@@ -8,15 +8,16 @@ Inputs:
 
 * adapted acoustic model ("hsb.hmm") and statistics ("feainfo.object") from step1
 	* check & replace in directory inputs/model
-* description of phonemes ("classes.txt")
+* description of phonemes ("classes.txt") from step1
     * check & replace in directory inputs/info
-* word loop lexicon ("hsb.grm")
+* word loop lexicon ("hsb.grm") from step1
     * check & replace in directory inputs/grammar
 * a list ("adptest.flst") of audio recordings and matching transcripts
     * check & replace list in directory inputs/flists
     * example audio data and transcripts can be found in "inputs/sig" and "inputs/trl"
         * audio files should be in wav format mono 16kHz
         * transcripts must match the word loop lexicon (check case!) and be one word per line
+	* please consult https://github.com/ZalozbaDev/speech_recognition_corpus_creation before creating own recordings!
 * config file ("label.cfg")
     * to be found in uasr-data/db-hsb-asr/HSB-01/info/
 
