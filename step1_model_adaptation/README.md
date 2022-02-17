@@ -46,3 +46,6 @@ Outputs:
 	* see "Dockerfile" on how to extract the file after successful container build
 * (optional) the generated "classes.txt" can be extracted in a similar way
 
+Evaluation:
+
+* No direct evaluation possible.
