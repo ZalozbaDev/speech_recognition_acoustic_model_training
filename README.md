@@ -6,7 +6,7 @@ This procedure allows to generate acoustic models for speech recognition from sc
 performed (see directory content for details):
 
 * step1_model_adaptation
-
+* step2_phoneme_segmentation
 
 
 ## Authors

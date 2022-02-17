@@ -39,7 +39,6 @@ Running:
 docker build -t speech_recognition_acoustic_model_training_step1 .
 ```
 
-
 Outputs:
 
 * adapted model "hsb.hmm" and (unmodified) "feainfo.object"
