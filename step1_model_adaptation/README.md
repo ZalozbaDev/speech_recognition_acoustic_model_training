@@ -42,9 +42,9 @@ docker build -t speech_recognition_acoustic_model_training_step1 .
 
 Outputs:
 
-* adapted model "hsb.hmm"
-	* see "Dockerfile" on how to extract the file after successful container build
-* (optional) the generated "classes.txt" can be extracted in a similar way
+* adapted model "hsb.hmm" and (unmodified) "feainfo.object"
+* generated "classes.txt" and "hsb.grm" from phoneme map and pronunciation rules 
+	* see "Dockerfile" on how to extract the files after successful container build
 
 Evaluation:
 
