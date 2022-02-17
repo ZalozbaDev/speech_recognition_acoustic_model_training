@@ -57,10 +57,10 @@ COPY inputs/info/classes.txt uasr-data/db-hsb-asr/HSB-01/info/
 COPY inputs/model/*          uasr-data/db-hsb-asr/HSB-01/model/
 
 # copy the to-be-labelled data (consider doing this differently with big amounts of data!)
-RUN mkdir -p uasr-data/db-hsb-asr/common/sig uasr-data/db-hsb-asr/common/trl uasr-data/db-hsb-asr/common/lab
+RUN mkdir -p uasr-data/db-hsb-asr/common/sig/ADP uasr-data/db-hsb-asr/common/trl/ADP uasr-data/db-hsb-asr/common/lab
 
-COPY inputs/sig/* uasr-data/db-hsb-asr/common/sig/
-COPY inputs/trl/* uasr-data/db-hsb-asr/common/trl/
+COPY inputs/sig/* uasr-data/db-hsb-asr/common/sig/ADP/
+COPY inputs/trl/* uasr-data/db-hsb-asr/common/trl/ADP/
 
 # now actually run the labelling
 RUN UASR_HOME="uasr" /dLabPro/bin.release/dlabpro UASR/scripts/dlabpro/HMM.xtp lab uasr-data/db-hsb-asr/HSB-01/info/label.cfg
