@@ -47,23 +47,23 @@ RUN cd UASR && git checkout 8ff6eb727dc303fff4c5556574caa0dae204a3e6
 ##########################################################
 
 # copy all files required to run labelling
-ADD uasr-data /
+RUN mkdir -p uasr-data/db-hsb-asr/HSB-01/flists uasr-data/db-hsb-asr/HSB-01/grammar uasr-data/db-hsb-asr/HSB-01/model uasr-data/db-hsb-asr/HSB-01/log uasr-data/db-hsb-asr/HSB-01/info
 
-RUN mkdir -p uasr-data/db-hsb-asr/HSB-01/flists uasr-data/db-hsb-asr/HSB-01/grammar uasr-data/db-hsb-asr/HSB-01/model uasr-data/db-hsb-asr/HSB-01/log
+COPY uasr-data/db-hsb-asr/HSB-01/info/* uasr-data/db-hsb-asr/HSB-01/info/
 
-COPY inputs/flists           uasr-data/db-hsb-asr/HSB-01/flists
-COPY inputs/grammar          uasr-data/db-hsb-asr/HSB-01/grammar
-COPY inputs/info/classes.txt uasr-data/db-hsb-asr/HSB-01/info
-COPY inputs/model            uasr-data/db-hsb-asr/HSB-01/model
+COPY inputs/flists/*         uasr-data/db-hsb-asr/HSB-01/flists/
+COPY inputs/grammar/*        uasr-data/db-hsb-asr/HSB-01/grammar/
+COPY inputs/info/classes.txt uasr-data/db-hsb-asr/HSB-01/info/
+COPY inputs/model/*          uasr-data/db-hsb-asr/HSB-01/model/
 
 # copy the to-be-labelled data (consider doing this differently with big amounts of data!)
 RUN mkdir -p uasr-data/db-hsb-asr/common/sig uasr-data/db-hsb-asr/common/trl uasr-data/db-hsb-asr/common/lab
 
-COPY inputs/sig uasr-data/db-hsb-asr/common/sig
-COPY inputs/trl uasr-data/db-hsb-asr/common/trl
+COPY inputs/sig/* uasr-data/db-hsb-asr/common/sig/
+COPY inputs/trl/* uasr-data/db-hsb-asr/common/trl/
 
 # now actually run the labelling
-RUN /dLabPro/bin.release/dlabpro UASR/scripts/dlabpro/HMM.xtp lab uasr-data/db-hsb-asr/HSB-01/info/label.cfg
+RUN UASR_HOME="uasr" /dLabPro/bin.release/dlabpro UASR/scripts/dlabpro/HMM.xtp lab uasr-data/db-hsb-asr/HSB-01/info/label.cfg
 
 # just a default instruction, might be handy
 CMD ["/bin/bash"]
