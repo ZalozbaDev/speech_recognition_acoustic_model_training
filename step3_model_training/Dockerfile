@@ -47,7 +47,7 @@ RUN cd UASR && git checkout 8ff6eb727dc303fff4c5556574caa0dae204a3e6
 ##########################################################
 
 # copy all files required to run labelling
-RUN mkdir -p uasr-data/db-hsb-asr/HSB-01/flists uasr-data/db-hsb-asr/HSB-01/grammar uasr-data/db-hsb-asr/HSB-01/model uasr-data/db-hsb-asr/HSB-01/log uasr-data/db-hsb-asr/HSB-01/info
+RUN mkdir -p uasr-data/db-hsb-asr/HSB-01/flists uasr-data/db-hsb-asr/HSB-01/grammar uasr-data/db-hsb-asr/HSB-01/log uasr-data/db-hsb-asr/HSB-01/info
 
 COPY uasr-data/db-hsb-asr/HSB-01/info/* uasr-data/db-hsb-asr/HSB-01/info/
 
