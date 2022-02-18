@@ -63,7 +63,7 @@ COPY inputs/lab/ADP uasr-data/db-hsb-asr/common/lab/ADP/
 COPY inputs/lab/CV  uasr-data/db-hsb-asr/common/lab/CV/
 
 # now actually run the labelling
-RUN UASR_HOME="uasr" /dLabPro/bin.release/dlabpro UASR/scripts/dlabpro/HMM.xtp trn uasr-data/db-hsb-asr/HSB-01/info/train.cfg
+RUN UASR_HOME="uasr" /dLabPro/bin.release/dlabpro UASR/scripts/dlabpro/HMM.xtp trn uasr-data/db-hsb-asr/HSB-01/info/train.cfg 2>&1 | tee logfile.txt
 
 # just a default instruction, might be handy
 CMD ["/bin/bash"]
