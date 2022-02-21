@@ -54,7 +54,7 @@ COPY uasr-data/db-hsb-asr/HSB-01/info/* uasr-data/db-hsb-asr/HSB-01/info/
 COPY inputs/flists/*         uasr-data/db-hsb-asr/HSB-01/flists/
 COPY inputs/info/classes.txt uasr-data/db-hsb-asr/HSB-01/info/
 
-# copy the to-be-labelled data (consider doing this differently with big amounts of data!)
+# copy the training/test data (consider doing this differently with big amounts of data!)
 RUN mkdir -p uasr-data/db-hsb-asr/common/sig/ADP/ uasr-data/db-hsb-asr/common/lab/ADP/ uasr-data/db-hsb-asr/common/sig/CV/ uasr-data/db-hsb-asr/common/lab/CV/  
 
 COPY inputs/sig/ADP uasr-data/db-hsb-asr/common/sig/ADP/
@@ -62,15 +62,30 @@ COPY inputs/sig/CV  uasr-data/db-hsb-asr/common/sig/CV/
 COPY inputs/lab/ADP uasr-data/db-hsb-asr/common/lab/ADP/
 COPY inputs/lab/CV  uasr-data/db-hsb-asr/common/lab/CV/
 
-# now actually run the labelling
+# now actually run the training
 RUN UASR_HOME="uasr" /dLabPro/bin.release/dlabpro UASR/scripts/dlabpro/HMM.xtp trn uasr-data/db-hsb-asr/HSB-01/info/train.cfg 2>&1 | tee logfile.txt
+
+COPY eval/* /
 
 # just a default instruction, might be handy
 CMD ["/bin/bash"]
 
 #########################################################
-# how to fetch the labels from the container
+# how to fetch the trained models from the container
 #########################################################
 
 ## mkdir -p output && rm -rf ./output/* 
 ## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step3 cp -r /uasr-data/db-hsb-asr/HSB-01/model/ /output/
+
+#########################################################
+# how to run evaluation of model(s)
+#########################################################
+
+## evaluate model X_Y.hmm
+## docker run -it speech_recognition_acoustic_model_training_step3  /run_evaluation.sh X_Y
+
+## evaluate model A_B.hmm and write label files
+## mkdir -p labels && rm -rf ./labels/*
+## docker run --mount type=bind,source="$(pwd)"/labels,target=/uasr-data/db-hsb-asr/HSB-01/log/ -it speech_recognition_acoustic_model_training_step3  /run_evaluation.sh X_Y LABELFILES
+
+
