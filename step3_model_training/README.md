@@ -43,3 +43,6 @@ Outputs:
 
 Evaluation:
 
+* the resulting model of each split ("A_B.hmm") can be evaluated for performance
+    * see "Dockerfile" for example commands
+    * extract models first to check which iteration was the best
