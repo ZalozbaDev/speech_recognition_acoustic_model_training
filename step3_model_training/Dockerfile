@@ -73,4 +73,4 @@ CMD ["/bin/bash"]
 #########################################################
 
 ## mkdir -p output && rm -rf ./output/* 
-## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step3 cp -r /uasr-data/db-hsb-asr/common/lab /output/
+## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step3 cp -r /uasr-data/db-hsb-asr/HSB-01/model/ /output/
