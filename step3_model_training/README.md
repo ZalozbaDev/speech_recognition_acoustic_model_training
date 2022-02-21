@@ -33,7 +33,7 @@ Running:
     * see also inline comments
     
 ```console
-docker build -t speech_recognition_acoustic_model_training_step2 .
+docker build -t speech_recognition_acoustic_model_training_step3 .
 ```
 
 Outputs:
