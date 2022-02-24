@@ -55,11 +55,9 @@ COPY inputs/flists/*         uasr-data/db-hsb-asr/HSB-01/flists/
 COPY inputs/info/classes.txt uasr-data/db-hsb-asr/HSB-01/info/
 
 # copy the training/test data (consider doing this differently with big amounts of data!)
-RUN mkdir -p uasr-data/db-hsb-asr/common/sig/ADP/ uasr-data/db-hsb-asr/common/lab/ADP/ uasr-data/db-hsb-asr/common/sig/CV/ uasr-data/db-hsb-asr/common/lab/CV/  
+RUN mkdir -p uasr-data/db-hsb-asr/common/sig/CV/ uasr-data/db-hsb-asr/common/lab/CV/  
 
-COPY inputs/sig/ADP uasr-data/db-hsb-asr/common/sig/ADP/
 COPY inputs/sig/CV  uasr-data/db-hsb-asr/common/sig/CV/
-COPY inputs/lab/ADP uasr-data/db-hsb-asr/common/lab/ADP/
 COPY inputs/lab/CV  uasr-data/db-hsb-asr/common/lab/CV/
 
 # now actually run the training
