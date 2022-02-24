@@ -42,7 +42,8 @@ docker build -t speech_recognition_acoustic_model_training_step1 .
 Outputs:
 
 * adapted model "hsb.hmm" and (unmodified) "feainfo.object"
-* generated "classes.txt" and "hsb.grm" from phoneme map and pronunciation rules 
+* generated "classes.txt" and "hsb.grm" from phoneme map and pronunciation rules
+* generated lexicon "hsb_sampa.ulex" from all the provided speech corpora
 	* see "Dockerfile" on how to extract the files after successful container build
 
 Evaluation:
