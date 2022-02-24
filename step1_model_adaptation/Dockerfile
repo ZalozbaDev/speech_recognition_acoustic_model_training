@@ -24,7 +24,7 @@ RUN apt install -y python3 python3-numpy python3-matplotlib python3-yaml
 
 # clone the repo that contains all data for generating the "classes.txt" file
 RUN git clone https://github.com/ZalozbaDev/speech_recognition_corpus_creation.git speech_recognition_corpus_creation
-RUN cd speech_recognition_corpus_creation && git checkout 73d51bdb710ba5692f93c93c671e0e4de6710c2d
+RUN cd speech_recognition_corpus_creation && git checkout b930dbd3778d90e8524ac7777e1f29da769e5a5b
 
 RUN mkdir corpus_creation/ && cp /speech_recognition_corpus_creation/examples/ex5/input/* corpus_creation/
 RUN cd corpus_creation/ && python3 BASgenerator.py HSB.yaml || /bin/true
