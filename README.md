@@ -8,6 +8,7 @@ performed (see directory content for details):
 * step1_model_adaptation
 * step2_phoneme_segmentation
 * step3_model_training
+* step4_speaker_adaptation (optional)
 
 ## Authors
 
