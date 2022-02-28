@@ -24,10 +24,13 @@ RUN apt install -y python3 python3-numpy python3-matplotlib python3-yaml
 
 # clone the repo that contains all data for generating the "classes.txt" file
 RUN git clone https://github.com/ZalozbaDev/speech_recognition_corpus_creation.git speech_recognition_corpus_creation
-RUN cd speech_recognition_corpus_creation && git checkout b930dbd3778d90e8524ac7777e1f29da769e5a5b
+RUN cd speech_recognition_corpus_creation && git checkout 92ca951a20aaf6705000c2e4f6c028aa104fd225
 
 RUN mkdir corpus_creation/ && cp /speech_recognition_corpus_creation/examples/ex5/input/* corpus_creation/
 RUN cd corpus_creation/ && python3 BASgenerator.py HSB.yaml || /bin/true
+
+RUN mkdir corpus_creation_small/ && cp /speech_recognition_corpus_creation/examples/ex5/input_small/* corpus_creation_small/
+RUN cd corpus_creation_small/ && python3 BASgenerator.py HSB_small.yaml || /bin/true
 
 ############################################
 # Fetch german acoustic model
@@ -83,8 +86,9 @@ CMD ["/bin/bash"]
 #########################################################
 
 ## mkdir -p output && rm -rf ./output/* 
-## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /adaptation/hsb.hmm                                         /output/
-## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /adaptation/feainfo.object                                  /output/
-## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /adaptation/classes.txt                                     /output/
-## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /corpus_creation/uasr_configurations/grammar/hsb.grm        /output/
-## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /corpus_creation/uasr_configurations/lexicon/hsb_sampa.ulex /output/
+## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /adaptation/hsb.hmm                                                     /output/
+## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /adaptation/feainfo.object                                              /output/
+## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /adaptation/classes.txt                                                 /output/
+## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /corpus_creation/uasr_configurations/grammar/hsb.grm                    /output/
+## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /corpus_creation/uasr_configurations/lexicon/hsb_sampa.ulex             /output/
+## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /corpus_creation_small/uasr_configurations/lexicon/hsb_small_sampa.ulex /output/
