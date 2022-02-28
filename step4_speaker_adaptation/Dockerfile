@@ -53,7 +53,6 @@ COPY uasr-data/db-hsb-asr/HSB-01/info/* uasr-data/db-hsb-asr/HSB-01/info/
 
 COPY inputs/flists/*         uasr-data/db-hsb-asr/HSB-01/flists/
 COPY inputs/info/classes.txt uasr-data/db-hsb-asr/HSB-01/info/
-COPY inputs/grammar/*        uasr-data/db-hsb-asr/HSB-01/grammar/
 COPY inputs/lexicon/*        uasr-data/db-hsb-asr/HSB-01/lexicon/
 COPY inputs/model/*          uasr-data/db-hsb-asr/HSB-01/model/
 
