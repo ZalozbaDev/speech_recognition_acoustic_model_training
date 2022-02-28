@@ -1,7 +1,7 @@
 # Model adaptation
 
 The acoustic models can be adapted to fixed conditions for improved performance. In case
-the application is operated withion constant acoustic conditions (speaker, microphone), the
+the application is operated within constant acoustic conditions (speaker, microphone), the
 general purpose model can be adjusted to these conditions.
 
 For this purpose, recordings of sentences within these conditions need to be created. Labelling
@@ -19,7 +19,7 @@ Inputs:
         * labels for "RECS/0003" are only required for evaluation
 * lexicon "hsb_small_sampa.ulex"
     * check & replace in directory inputs/lexicon
-* trained acoustic model ("X_Y.hmm") and statistics ("feainfo.object") from step1
+* trained acoustic model ("X_Y.hmm") and statistics ("feainfo.object") from step3
 	* check & replace in directory inputs/model
 * config files ("adapt.cfg" and "eval.cfg")
     * to be found in uasr-data/db-hsb-asr/HSB-01/info/
