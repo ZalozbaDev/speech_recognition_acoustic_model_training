@@ -47,7 +47,7 @@ RUN cd UASR && git checkout 8ff6eb727dc303fff4c5556574caa0dae204a3e6
 ##########################################################
 
 # copy all files required to run adaptation
-RUN mkdir -p uasr-data/db-hsb-asr/HSB-01/flists uasr-data/db-hsb-asr/HSB-01/grammar uasr-data/db-hsb-asr/HSB-01/log uasr-data/db-hsb-asr/HSB-01/info uasr-data/db-hsb-asr/HSB-01/lexicon uasr-data/db-hsb-asr/HSB-01/model
+RUN mkdir -p uasr-data/db-hsb-asr/HSB-01/flists uasr-data/db-hsb-asr/HSB-01/log uasr-data/db-hsb-asr/HSB-01/info uasr-data/db-hsb-asr/HSB-01/lexicon uasr-data/db-hsb-asr/HSB-01/model
 
 COPY uasr-data/db-hsb-asr/HSB-01/info/* uasr-data/db-hsb-asr/HSB-01/info/
 
@@ -65,7 +65,23 @@ COPY inputs/lab/ADP  uasr-data/db-hsb-asr/common/lab/ADP/
 COPY inputs/trl/ADP  uasr-data/db-hsb-asr/common/trl/ADP/
 
 # now actually run the adaptation
-#RUN UASR_HOME="uasr" /dLabPro/bin.release/dlabpro UASR/scripts/dlabpro/HMM.xtp trn uasr-data/db-hsb-asr/HSB-01/info/train.cfg 2>&1 | tee logfile.txt
+RUN UASR_HOME="uasr" /dLabPro/bin.release/dlabpro UASR/scripts/dlabpro/HMM.xtp adp uasr-data/db-hsb-asr/HSB-01/info/adapt.cfg
+
+# eval before/after with lexicon
+RUN echo "=================================================================="
+RUN echo "=================================================================="
+RUN UASR_HOME="uasr" /dLabPro/bin.release/dlabpro UASR/scripts/dlabpro/HMM.xtp evl uasr-data/db-hsb-asr/HSB-01/info/adapt.cfg -Puasr.am.eval.mode="0" -Puasr.am.model="3_7"  | sed -n -e '/Evaluation result/,$p'
+RUN echo "=================================================================="
+RUN UASR_HOME="uasr" /dLabPro/bin.release/dlabpro UASR/scripts/dlabpro/HMM.xtp evl uasr-data/db-hsb-asr/HSB-01/info/adapt.cfg -Puasr.am.eval.mode="0" -Puasr.am.model="3_7_A"  | sed -n -e '/Evaluation result/,$p'
+
+
+# eval before/after with free phoneme recognition
+RUN echo "=================================================================="
+RUN echo "=================================================================="
+RUN UASR_HOME="uasr" /dLabPro/bin.release/dlabpro UASR/scripts/dlabpro/HMM.xtp evl uasr-data/db-hsb-asr/HSB-01/info/eval.cfg -Puasr.am.model="3_7"  | sed -n -e '/Evaluation result/,$p'
+RUN echo "=================================================================="
+RUN UASR_HOME="uasr" /dLabPro/bin.release/dlabpro UASR/scripts/dlabpro/HMM.xtp evl uasr-data/db-hsb-asr/HSB-01/info/eval.cfg -Puasr.am.model="3_7_A"  | sed -n -e '/Evaluation result/,$p'
+
 
 #COPY eval/* /
 
@@ -77,7 +93,7 @@ CMD ["/bin/bash"]
 #########################################################
 
 ## mkdir -p output && rm -rf ./output/* 
-## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step3 cp -r /uasr-data/db-hsb-asr/HSB-01/model/ /output/
+## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step4 cp -r /uasr-data/db-hsb-asr/HSB-01/model/ /output/
 
 #########################################################
 # how to run evaluation of model(s)
