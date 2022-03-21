@@ -10,6 +10,8 @@ performed (see directory content for details):
 * step3_model_training
 * step4_speaker_adaptation (optional)
 
+Documentation which was used to generate these examples can be found in the "report" folder.
+
 ## Authors
 
 - Dr. Ivan Kraljevski (Fraunhofer Institute for Ceramic Technologies and Systems IKTS, Dresden, Germany)
