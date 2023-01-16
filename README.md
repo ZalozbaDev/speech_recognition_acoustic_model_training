@@ -6,6 +6,7 @@ This procedure allows to generate acoustic models for speech recognition from sc
 performed (see directory content for details):
 
 * step1_model_adaptation
+* step1X5_audio_augmentation (optional)
 * step2_phoneme_segmentation
 * step3_model_training_UASR
 * step4_speaker_adaptation_UASR (optional)
