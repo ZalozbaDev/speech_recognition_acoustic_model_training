@@ -20,7 +20,14 @@ RUN apt install -y g++ make git procps nano
 ##########################################
 
 RUN git clone https://github.com/ZalozbaDev/dLabPro.git dLabPro
-RUN cd dLabPro && git checkout 297f1dc7a6b86a7ed786f845e93e327576e913ae
+RUN cd dLabPro && git checkout ec4d0ab71d50b061471feebc02f27333c52b1ca6
+
+# cherry-picking needs identity first
+RUN git config --global user.email "you@example.com"
+RUN git config --global user.name "Your Name"
+
+# fix building issue due to changed make syntax
+RUN cd dLabPro && git cherry-pick 297f1dc7a6b86a7ed786f845e93e327576e913ae
 
 # need to build the C++ part first
 RUN apt install -y libreadline-dev portaudio19-dev
