@@ -4,7 +4,8 @@ Clean speech recordings can be used for augmentation by introducing background n
 
 Augmentation provides larger amount of diverse speech data necessary for creation of robust triphone models.
 
-Due to the possible changes in timing, 
+Due to the possible changes in timing, labels of the original audio cannot be used. Augmented files need to be labelled
+separately.
 
 Inputs:
 
