@@ -1,0 +1,77 @@
+#!/usr/bin/env dlabpro
+
+"$UASR_HOME/scripts/dlabpro/util/cfg.itp"  include;                                                        # Include configuration utilities
+"$UASR_HOME/scripts/dlabpro/util/os.itp"   include;                                                        # Include OS utilities
+"$UASR_HOME/scripts/dlabpro/util/uasr.itp" include;                                                        # Include UASR utilities
+"$UASR_HOME/scripts/dlabpro/util/var.itp"  include;                                                        # Include variables' utilities
+"$UASR_HOME/scripts/dlabpro/util/lab.itp"  include;                                                        # Include variables' utilities
+"$UASR_HOME/scripts/dlabpro/util/fea.itp"  include;                                                        # Include variables' utilities
+"$UASR_HOME/scripts/dlabpro/util/sig.itp"  include;                                                        # Include variables' utilities
+"$UASR_HOME/scripts/dlabpro/util/am.itp"   include;                                                        # Include variables' utilities
+"$UASR_HOME/scripts/dlabpro/train/am.itp"  include;                                                        # Include variables' utilities
+
+function -usage()
+{
+      "\n   FEA analysis & convert to kaldi"                              -MSG;
+    "\n\n   USAGE:"                                                       -MSG;
+      "\n     dlabpro $__SFILE__.xtp <cfgfile> [options]"                 -MSG;
+    "\n\n   ARGUMENTS:"                                                   -MSG;
+      "\n     <cfgfile>       UASR configuration file"                    -MSG;
+    "\n\n   OPTIONS:"                                                     -MSG;
+      "\n     -P<key>=<value> override config. key-value-pairs"           -MSG;
+      "\n     -v<n>           verbose level"                              -MSG;
+    "\n\n   EXAMPLE:"                                                     -MSG;
+      "\n     $__SFILE__.xtp ../../config/vm/VM.cfg -Pexp=VMV"            -MSG;
+    "\n\n"                                                                -MSG;
+    0 return;
+}
+
+$$ 1 < if -usage; 0 return; end
+"\n// Configuration   : $1"                                               -MSG;
+"$1" TRUE -CFG_init;
+"$UASR_HOME/scripts/dlabpro/util/uasr_session.itp" include;                                                # Include UASR session startup script
+
+"model" "S" -CFG_get_path var sDirModel;
+"log"   "S" -CFG_get_path var sDirLog;
+"trl"   "S" -CFG_get_path var sDirTrl;
+"sig"   ""  -CFG_get_path var sDirSig;
+
+"\n\n#### Train feainfo.object ####"                                       -MSG;
+object iFI;
+NULL iFI -FEA_info;
+hmm itHMM; iFI.nDim itHMM -HMM_create;
+itHMM.ud iFI 0 -FEA_analyze;
+
+"\n\n#### Feature analysis & export ####"                                   -MSG;
+data idDatSets; ( "flists" "train,test,dev" "S" -CFG_get_ex ) "," "split" -VAR_strop idDatSets =;
+var        sDatSet;
+var        sDirOut;
+var        sUser;
+file       iF;
+data       idFea;
+data       idLab;
+data       idTrl;
+data       idText;
+0 var nDS; nDS idDatSets.dim < while;
+  :idDatSets[0,nDS]: sDatSet =;
+  "${sDirLog}/uasrfea/${sDatSet}" sDirOut =;
+  ( "flist.sep" "\t " "S" -CFG_get_ex    ) iF -set sep;
+  ( sDatSet      ""       -CFG_get_flist ) iF -set flist;
+  "\n\n    $[iF.len] samples ..."                                        -MSG;
+  "\n    Output directory: ${sDirOut} ..."                                        -MSG;
+  0 1 -PBAR;
+  iF -next while
+    "\n     $[iF.nfile 1 +]/$[iF.len] - $[iF.sfile]: "                   -MSG2;
+    :(iF.nfile+1)/iF.len: 1 -PBAR;
+    iF 0 "A" idFea -FEA_get not if continue; end                     "." -MSG2;
+    idFea idLab idFea -LAB_strip;                                    "." -MSG2;
+    idFea iFI ( itHMM -get_dim ) idFea NULL -FEA_sfa;                "." -MSG2;
+    sDirTrl iF.sfile idTrl -TRL_import;                              "." -MSG2;
+
+    "${sDirOut}/${iF.sfile}.dn3" idFea /zip -save;                   "." -MSG2;
+    "${sDirOut}/${iF.sfile}.txt" "ascii" idTrl stdfile -export;      "." -MSG2;
+  end
+  "\n   "                                                                -MSG2;
+  "done\n"                                                                -MSG;
+  nDS ++=;
+end;

@@ -1,0 +1,46 @@
+
+## UASR class definition file
+## - VerbMobil Database
+##
+##   first  column: model name
+##   second column: number of states
+##   third  column: voice/unvoiced information
+##   fourth column: abstract model for SMG reclassification
+
+ .	3	0.0	[nsp] 
+ #	3	0.0	[nsp]
+ 1	3	1.0	[spe]
+ C	3	0.0	[spe]
+ E	3	1.0	[spe]
+ O	3	1.0	[spe]
+ Q	3	0.0	[spe]
+ S	3	0.0	[spe]
+ U	3	1.0	[spe]
+ Z	3	0.0	[spe]
+ a	3	1.0	[spe]
+ b	3	0.0	[spe]
+ d	3	0.0	[spe]
+ dZ	3	0.0	[spe]
+ e	3	1.0	[spe]
+ f	3	0.0	[spe]
+ g	3	0.0	[spe]
+ h	3	0.0	[spe]
+ i	3	1.0	[spe]
+ j	3	0.0	[spe]
+ ji	3	0.0	[spe]
+ jn	3	0.0	[spe]
+ k	3	0.0	[spe]
+ l	3	0.0	[spe]
+ m	3	0.0	[spe]
+ n	3	0.0	[spe]
+ o	3	1.0	[spe]
+ p	3	0.0	[spe]
+ r	3	0.0	[spe]
+ s	3	0.0	[spe]
+ t	3	0.0	[spe]
+ tS	3	0.0	[spe]
+ ts	3	0.0	[spe]
+ u	3	1.0	[spe]
+ w	3	0.0	[spe]
+ x	3	0.0	[spe]
+ z	3	0.0	[spe]
