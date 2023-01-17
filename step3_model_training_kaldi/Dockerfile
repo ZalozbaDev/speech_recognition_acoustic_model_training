@@ -112,7 +112,10 @@ RUN mkdir -p /uasr-data/db-hsb-asr/HSB-P3/log/uasrfea/train/
 
 # run the conversion
 RUN cd /uasr-data/db-hsb-asr/ && export PATH=$PATH:/dLabPro/bin.release/ && export UASR_HOME=/uasr && \
-python3 fea_uasr2kaldi.py HSB-P3/info/default.cfg -Puasr.flists=train,dev,test
+python3 fea_uasr2kaldi.py HSB-P3/info/default.cfg -Puasr.flists=train,test
+
+# no idea what the "dev" list is for
+# python3 fea_uasr2kaldi.py HSB-P3/info/default.cfg -Puasr.flists=train,dev,test
 
 CMD ["/bin/bash"]
 
