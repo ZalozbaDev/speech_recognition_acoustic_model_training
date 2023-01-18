@@ -109,6 +109,9 @@ COPY inputs/scripts/ /uasr-data/db-hsb-asr/
 # Convert UASR-style project to Kaldi
 ############################################
 
+# not necessary but nice to have around
+RUN apt install -y mc
+
 # prepare some folders that must exist
 RUN mkdir -p /uasr-data/db-hsb-asr/HSB-P3/log/uasrfea/train/
 
@@ -118,7 +121,13 @@ python3 fea_uasr2kaldi.py HSB-P3/info/default.cfg -Puasr.flists=train,dev,test
 # need to clarify what the "dev" list is for...
 
 # start the Kaldi training itself
+RUN apt install -y dos2unix
 RUN chmod 755 /kaldi/egs/hsb/s5/local/*.sh
+
+# make /bin/sh symlink to bash instead of dash:
+RUN echo "dash dash/sh boolean false" | debconf-set-selections
+RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
+
 RUN /bin/bash -c 'cd /kaldi/egs/hsb/s5/ && source ./path.sh && export UASR_HOME=/uasr &&  export USER=kaldiuser && \
 chmod 755 ./run.sh && ./run.sh'
 
