@@ -97,8 +97,10 @@ COPY inputs/trl/ /uasr-data/db-hsb-asr/common/trl/
 # copy config data
 RUN mkdir -p /uasr-data/db-hsb-asr/HSB-P3/flists
 RUN mkdir -p /uasr-data/db-hsb-asr/HSB-P3/info
-COPY inputs/flists/ /uasr-data/db-hsb-asr/HSB-P3/flists/
-COPY inputs/info/   /uasr-data/db-hsb-asr/HSB-P3/info
+RUN mkdir -p /uasr-data/db-hsb-asr/HSB-P3/lexicon
+COPY inputs/flists/  /uasr-data/db-hsb-asr/HSB-P3/flists/
+COPY inputs/info/    /uasr-data/db-hsb-asr/HSB-P3/info/
+COPY inputs/lexicon/ /uasr-data/db-hsb-asr/HSB-P3/lexicon/
 
 # copy conversion scripts
 COPY inputs/scripts/ /uasr-data/db-hsb-asr/
@@ -113,9 +115,11 @@ RUN mkdir -p /uasr-data/db-hsb-asr/HSB-P3/log/uasrfea/train/
 # run the conversion
 RUN cd /uasr-data/db-hsb-asr/ && export PATH=$PATH:/dLabPro/bin.release/ && export UASR_HOME=/uasr && \
 python3 fea_uasr2kaldi.py HSB-P3/info/default.cfg -Puasr.flists=train,dev,test
+# need to clarify what the "dev" list is for...
 
-# need to clarify what the "dev" list is for
-
+# start the Kaldi training itself
+RUN /bin/bash -c 'cd /kaldi/egs/hsb/s5/ && source ./path.sh && export UASR_HOME=/uasr &&  export USER=kaldiuser && \
+chmod 755 ./run.sh && ./run.sh'
 
 CMD ["/bin/bash"]
 
