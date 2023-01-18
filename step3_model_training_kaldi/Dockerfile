@@ -118,6 +118,7 @@ python3 fea_uasr2kaldi.py HSB-P3/info/default.cfg -Puasr.flists=train,dev,test
 # need to clarify what the "dev" list is for...
 
 # start the Kaldi training itself
+RUN chmod 755 /kaldi/egs/hsb/s5/local/*.sh
 RUN /bin/bash -c 'cd /kaldi/egs/hsb/s5/ && source ./path.sh && export UASR_HOME=/uasr &&  export USER=kaldiuser && \
 chmod 755 ./run.sh && ./run.sh'
 
