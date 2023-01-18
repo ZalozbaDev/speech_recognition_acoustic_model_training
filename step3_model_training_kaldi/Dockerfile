@@ -90,9 +90,9 @@ COPY inputs/kaldi_recipe/hsb/ /kaldi/egs/hsb/
 
 # training & eval data
 RUN mkdir -p /uasr-data/db-hsb-asr/common/sig
-RUN mkdir -p /uasr-data/db-hsb-asr/common/lab
+RUN mkdir -p /uasr-data/db-hsb-asr/common/trl
 COPY inputs/sig/ /uasr-data/db-hsb-asr/common/sig/
-COPY inputs/lab/ /uasr-data/db-hsb-asr/common/lab/
+COPY inputs/lab/ /uasr-data/db-hsb-asr/common/trl/
 
 # copy config data
 RUN mkdir -p /uasr-data/db-hsb-asr/HSB-P3/flists
