@@ -91,8 +91,10 @@ COPY inputs/kaldi_recipe/hsb/ /kaldi/egs/hsb/
 # training & eval data
 RUN mkdir -p /uasr-data/db-hsb-asr/common/sig
 RUN mkdir -p /uasr-data/db-hsb-asr/common/trl
+RUN mkdir -p /uasr-data/db-hsb-asr/common/lab
 COPY inputs/sig/ /uasr-data/db-hsb-asr/common/sig/
 COPY inputs/trl/ /uasr-data/db-hsb-asr/common/trl/
+COPY inputs/lab/ /uasr-data/db-hsb-asr/common/lab/
 
 # copy config data
 RUN mkdir -p /uasr-data/db-hsb-asr/HSB-P3/flists
@@ -118,7 +120,7 @@ RUN mkdir -p /uasr-data/db-hsb-asr/HSB-P3/log/uasrfea/train/
 # run the conversion
 RUN cd /uasr-data/db-hsb-asr/ && export PATH=$PATH:/dLabPro/bin.release/ && export UASR_HOME=/uasr && \
 python3 fea_uasr2kaldi.py HSB-P3/info/default.cfg -Puasr.flists=train,dev,test
-# need to clarify what the "dev" list is for...
+# "dev" list is informational only
 
 # start the Kaldi training itself
 RUN apt install -y dos2unix
@@ -131,5 +133,10 @@ RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 RUN /bin/bash -c 'cd /kaldi/egs/hsb/s5/ && source ./path.sh && export UASR_HOME=/uasr &&  export USER=kaldiuser && \
 chmod 755 ./run.sh && ./run.sh'
 
+RUN mkdir /output
+
 CMD ["/bin/bash"]
 
+# save the Kaldi models
+## mkdir -p output
+## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step3_kaldi cp -r /uasr-data/db-hsb-asr/HSB-P3/model /output

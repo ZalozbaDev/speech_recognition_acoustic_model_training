@@ -7,3 +7,9 @@ supplied labelled training data and the phoneme list.
 
 Inputs:
 
+
+
+## Adjustments for smaller dataset
+
+inputs/kaldi_recipe/hsb/s5/cmd.sh
+
