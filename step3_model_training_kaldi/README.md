@@ -38,6 +38,8 @@ Tools:
     * don't forget to build the Python wrapper!
 * UASR ("Unified Approach to signal Synthesis and Recognition") software and scripts
     * see https://github.com/ZalozbaDev/UASR
+* Kaldi
+    * https://github.com/ZalozbaDev/kaldi.git
 * conversion scripts to/from UASR
     * check & replace in directory inputs/scripts
     * "fea_uasr2kaldi.py" - set up a Kaldi project from a UASR project definition
@@ -52,4 +54,6 @@ Outputs:
 	
 Evaluation:
 
-* TBD
+* results shown at the end of container build
+    * see also Dockerfile how to show training results
+    

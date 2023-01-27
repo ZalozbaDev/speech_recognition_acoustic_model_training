@@ -20,6 +20,8 @@ RUN apt install -y g++ make git procps nano
 
 RUN git clone https://github.com/ZalozbaDev/kaldi.git
 
+# TBD should checkout a fixed rev for kaldi
+
 RUN apt install -y zlib1g-dev automake autoconf bzip2 unzip wget sox gfortran libtool subversion python2.7 python3 
 
 RUN DEBIAN_FRONTEND=noninteractive apt install -y intel-mkl
@@ -144,6 +146,7 @@ RUN cd /uasr-data/db-hsb-asr/ && DLABPRO_HOME=/dLabPro UASR_HOME=/uasr python3 a
 RUN cd /uasr-data/db-hsb-asr/ && DLABPRO_HOME=/dLabPro UASR_HOME=/uasr python3 am_kaldi2uasr.py /uasr-data/db-hsb-asr/HSB-P3/model/hsb_500_20000_sb125p025_nfea_tri1/hsb_500_20000_sb125p025_nfea_tri1.txt   /model_tri1.hmm
 RUN cd /uasr-data/db-hsb-asr/ && DLABPRO_HOME=/dLabPro UASR_HOME=/uasr python3 am_kaldi2uasr.py /uasr-data/db-hsb-asr/HSB-P3/model/hsb_1000_40000_sb125p025_nfea_tri2/hsb_1000_40000_sb125p025_nfea_tri2.txt /model_tri2.hmm
 
+RUN cd kaldi/egs/hsb/s5/ && chmod 755 show_results.sh && ./show_results.sh
 
 RUN mkdir /output
 
@@ -156,3 +159,7 @@ CMD ["/bin/bash"]
 # fetch the UASR converted models
 ## mkdir -p output
 ## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step3_kaldi cp /model_mono.hmm /model_tri1.hmm /model_tri2.hmm /output
+
+# show training results
+## docker run -it speech_recognition_acoustic_model_training_step3_kaldi /bin/bash -c "cd kaldi/egs/hsb/s5/ && chmod 755 show_results.sh && ./show_results.sh"
+
