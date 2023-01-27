@@ -15,5 +15,10 @@ export train_cmd="utils/run.pl"
 export decode_cmd="utils/run.pl"
 export cuda_cmd="utils/run.pl -l gpu=1"
 
+# these are lowered settings for the example
 export nJobs=8
 export nDecodeJobs=2
+
+# use these settings for bigger corpora with more speakers
+## export nJobs=16
+## export nDecodeJobs=8

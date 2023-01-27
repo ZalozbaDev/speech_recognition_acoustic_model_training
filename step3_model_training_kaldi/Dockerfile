@@ -118,11 +118,14 @@ RUN apt install -y mc
 RUN mkdir -p /uasr-data/db-hsb-asr/HSB-P3/log/uasrfea/train/
 
 # run the conversion
-RUN cd /uasr-data/db-hsb-asr/ && export PATH=$PATH:/dLabPro/bin.release/ && export UASR_HOME=/uasr && \
+RUN cd /uasr-data/db-hsb-asr/ && touch a && export PATH=$PATH:/dLabPro/bin.release/ && export UASR_HOME=/uasr && \
 python3 fea_uasr2kaldi.py HSB-P3/info/default.cfg -Puasr.flists=train,dev,test
-# "dev" list is informational only
+# "dev" list is sort of informational only
 
-# start the Kaldi training itself
+############################################
+# Start Kaldi training
+############################################
+
 RUN apt install -y dos2unix
 RUN chmod 755 /kaldi/egs/hsb/s5/local/*.sh
 
@@ -133,10 +136,23 @@ RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 RUN /bin/bash -c 'cd /kaldi/egs/hsb/s5/ && source ./path.sh && export UASR_HOME=/uasr &&  export USER=kaldiuser && \
 chmod 755 ./run.sh && ./run.sh'
 
+############################################
+# Convert Kaldi results to UASR compatible format
+############################################
+
+RUN cd /uasr-data/db-hsb-asr/ && DLABPRO_HOME=/dLabPro UASR_HOME=/uasr python3 am_kaldi2uasr.py /uasr-data/db-hsb-asr/HSB-P3/model/hsb_20000_sb125p025_nfea_mono/hsb_20000_sb125p025_nfea.txt                /model_mono.hmm
+RUN cd /uasr-data/db-hsb-asr/ && DLABPRO_HOME=/dLabPro UASR_HOME=/uasr python3 am_kaldi2uasr.py /uasr-data/db-hsb-asr/HSB-P3/model/hsb_500_20000_sb125p025_nfea_tri1/hsb_500_20000_sb125p025_nfea_tri1.txt   /model_tri1.hmm
+RUN cd /uasr-data/db-hsb-asr/ && DLABPRO_HOME=/dLabPro UASR_HOME=/uasr python3 am_kaldi2uasr.py /uasr-data/db-hsb-asr/HSB-P3/model/hsb_1000_40000_sb125p025_nfea_tri2/hsb_1000_40000_sb125p025_nfea_tri2.txt /model_tri2.hmm
+
+
 RUN mkdir /output
 
 CMD ["/bin/bash"]
 
-# save the Kaldi models
+# fetch the Kaldi models
 ## mkdir -p output
 ## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step3_kaldi cp -r /uasr-data/db-hsb-asr/HSB-P3/model /output
+
+# fetch the UASR converted models
+## mkdir -p output
+## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step3_kaldi cp /model_mono.hmm /model_tri1.hmm /model_tri2.hmm /output
