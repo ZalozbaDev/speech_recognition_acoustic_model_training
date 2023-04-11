@@ -2,10 +2,10 @@ FROM debian:bullseye-slim
 MAINTAINER Daniel Sobe <daniel.sobe@sorben.com>
 
 # normal call
-# docker build -t speech_recognition_acoustic_model_training_step3_UASR .
+# docker build -t speech_recognition_acoustic_model_training_step3_uasr .
 
 # rebuild from scratch
-# docker build -t speech_recognition_acoustic_model_training_step3_UASR . --no-cache
+# docker build -t speech_recognition_acoustic_model_training_step3_uasr . --no-cache
 
 # enable in case you want to install tools from contrib or non-free
 # RUN sed -i 's/ main/ main contrib non-free/' /etc/apt/sources.list
@@ -20,7 +20,14 @@ RUN apt install -y g++ make git procps nano
 ##########################################
 
 RUN git clone https://github.com/ZalozbaDev/dLabPro.git dLabPro
-RUN cd dLabPro && git checkout 8b8a01b973356f974c4083510fa0275a4e53cf40
+RUN cd dLabPro && git checkout ec4d0ab71d50b061471feebc02f27333c52b1ca6
+
+# cherry-picking needs identity first
+RUN git config --global user.email "you@example.com"
+RUN git config --global user.name "Your Name"
+
+# fix building issue due to changed make syntax
+RUN cd dLabPro && git cherry-pick 297f1dc7a6b86a7ed786f845e93e327576e913ae
 
 # need to build the C++ part first
 RUN apt install -y libreadline-dev portaudio19-dev
@@ -43,7 +50,7 @@ RUN git clone https://github.com/ZalozbaDev/UASR.git UASR
 RUN cd UASR && git checkout 8ff6eb727dc303fff4c5556574caa0dae204a3e6
 
 ##########################################################
-# Collect all files and actually run the labelling
+# Collect all files and actually run the training
 ##########################################################
 
 # copy all files required to run labelling
@@ -55,10 +62,10 @@ COPY inputs/flists/*         uasr-data/db-hsb-asr/HSB-01/flists/
 COPY inputs/info/classes.txt uasr-data/db-hsb-asr/HSB-01/info/
 
 # copy the training/test data (consider doing this differently with big amounts of data!)
-RUN mkdir -p uasr-data/db-hsb-asr/common/sig/CV/ uasr-data/db-hsb-asr/common/lab/CV/  
+RUN mkdir -p uasr-data/db-hsb-asr/common/sig/BBAA/ uasr-data/db-hsb-asr/common/lab/BBAA/  
 
-COPY inputs/sig/CV  uasr-data/db-hsb-asr/common/sig/CV/
-COPY inputs/lab/CV  uasr-data/db-hsb-asr/common/lab/CV/
+COPY inputs/sig/BBAA  uasr-data/db-hsb-asr/common/sig/BBAA/
+COPY inputs/lab/BBAA  uasr-data/db-hsb-asr/common/lab/BBAA/
 
 # now actually run the training
 RUN UASR_HOME="uasr" /dLabPro/bin.release/dlabpro UASR/scripts/dlabpro/HMM.xtp trn uasr-data/db-hsb-asr/HSB-01/info/train.cfg 2>&1 | tee logfile.txt
