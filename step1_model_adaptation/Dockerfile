@@ -16,23 +16,6 @@ RUN apt update
 RUN apt install -y g++ make git procps nano
 
 ############################################
-# Generate "classes.txt" file from scratch
-############################################
-
-# install tools for running "BASgenerator.py"
-RUN apt install -y python3 python3-numpy python3-matplotlib python3-yaml
-
-# clone the repo that contains all data for generating the "classes.txt" file
-RUN git clone https://github.com/ZalozbaDev/speech_recognition_corpus_creation.git speech_recognition_corpus_creation
-RUN cd speech_recognition_corpus_creation && git checkout 92ca951a20aaf6705000c2e4f6c028aa104fd225
-
-RUN mkdir corpus_creation/ && cp /speech_recognition_corpus_creation/examples/ex5/input/* corpus_creation/
-RUN cd corpus_creation/ && python3 BASgenerator.py HSB.yaml || /bin/true
-
-RUN mkdir corpus_creation_small/ && cp /speech_recognition_corpus_creation/examples/ex5/input_small/* corpus_creation_small/
-RUN cd corpus_creation_small/ && python3 BASgenerator.py HSB_small.yaml || /bin/true
-
-############################################
 # Fetch german acoustic model
 ############################################
 
@@ -44,19 +27,19 @@ RUN cd db-hsb-asr && git checkout 8e86fb8171b58cc794e585433e4da7d2ea88a438
 ##########################################
 
 RUN git clone https://github.com/ZalozbaDev/dLabPro.git dLabPro
-RUN cd dLabPro && git checkout 297f1dc7a6b86a7ed786f845e93e327576e913ae
+RUN cd dLabPro && git checkout ec4d0ab71d50b061471feebc02f27333c52b1ca6
 
 # add a compile fix for Debian Bullseye
-#RUN git config --global user.email "daniel.sobe@sorben.com"
-#RUN git config --global user.name "Daniel Sobe"
-#RUN cd dLabPro && git cherry-pick 29c71b09c61626a30e52c84e9b9ac0586ec2bd0d
+RUN git config --global user.email "you@example.com"
+RUN git config --global user.name "Your Name"
+RUN cd dLabPro && git cherry-pick 297f1dc7a6b86a7ed786f845e93e327576e913ae
 
 # need to build the C++ part first
 RUN apt install -y libreadline-dev portaudio19-dev
 RUN cd dLabPro && make -C programs/dlabpro RELEASE
 
 # additional python deps for building the wrapper
-RUN apt install -y python3-distutils cython3
+RUN apt install -y python3 python3-numpy python3-matplotlib python3-yaml python3-distutils cython3
 
 # now build the python wrapper
 RUN cd dLabPro/programs/python && ./setup.py build && ./setup.py install
@@ -68,10 +51,13 @@ RUN cd dLabPro/programs/python && ./setup.py build && ./setup.py install
 # create folder and copy all files
 RUN mkdir /adaptation
 
-ADD hsb.yaml /adaptation
-ADD mapAM.py /adaptation
+ADD input/config/hsb.yaml /adaptation
+ADD input/scripts/mapAM.py /adaptation
 
-RUN cp corpus_creation/uasr_configurations/info/classes.txt /adaptation/
+# hand-crafted file
+ADD input/config/classes.txt /adaptation/
+
+# german model
 RUN cp db-hsb-asr/model/default/3_20.hmm                    /adaptation/
 RUN cp db-hsb-asr/model/default/feainfo.object              /adaptation/
 
@@ -89,6 +75,3 @@ CMD ["/bin/bash"]
 ## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /adaptation/hsb.hmm                                                     /output/
 ## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /adaptation/feainfo.object                                              /output/
 ## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /adaptation/classes.txt                                                 /output/
-## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /corpus_creation/uasr_configurations/grammar/hsb.grm                    /output/
-## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /corpus_creation/uasr_configurations/lexicon/hsb_sampa.ulex             /output/
-## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /corpus_creation_small/uasr_configurations/lexicon/hsb_small_sampa.ulex /output/

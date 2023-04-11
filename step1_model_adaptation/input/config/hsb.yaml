@@ -1,0 +1,50 @@
+# Configuration file
+
+source: '3_20.hmm'
+target: 'hsb.hmm'
+
+gauss_tie: false
+
+
+mapping:      
+    '.': ['.']
+    '#': ['#']
+    'a': ['a:']
+    'E': ['E']
+    'e': ['e:']
+    'I': ['j','i:']
+    'i': ['i:']
+    '@': ['@']
+    'O': ['O']
+    'o': ['o:']
+    'u' : ['u:']
+    'p': ['p']
+    't': ['t']
+    'k': ['k']
+    'b': ['b']
+    'd': ['d']
+    'g': ['g']
+    'f': ['f']
+    'v': ['v']
+    's': ['s']
+    'z': ['z']
+    's+': ['S']
+    'z+': ['z','S']
+    'x' : ['x']
+    'C': ['C']
+    'h': ['h']
+    '?': ['Q']
+    'ts': ['t','s']
+    'tS': ['t','S']
+    'dZ': ['d','z','S']
+    'l': ['l']
+    'm': ['m']
+    'n': ['n']
+    'J': ['j','n']
+    '_j': ['j']
+    'r': ['r']
+    'oU': ['o:','U']
+    'aU': ['aU']
+     
+#classes file to validate
+classfile: "classes.txt"
