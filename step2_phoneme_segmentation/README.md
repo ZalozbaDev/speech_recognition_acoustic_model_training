@@ -14,18 +14,21 @@ Preparations:
     * recordings can have several words, but there is a maximum length of a sentence!
 * check that recordings are in proper format:
     * example for conversion: ./0003_convert_wav.sh inputs/recordings/sig/BBAA/0001/
-      
+* check that transcripts are all upper case:
+    * example for conversion: ./0004_convert_trl.sh inputs/recordings/trl/
+    
 Inputs:
 
-* adapted acoustic model ("hsb.hmm") and statistics ("feainfo.object") from step1
+* adapted acoustic model ("dsb.hmm") and statistics ("feainfo.object") from step1
 	* check & replace in directory inputs/model
 * description of phonemes ("classes.txt") from step1
     * check & replace in directory inputs/info
-* word loop lexicon ("hsb.grm") from step1
+* word loop lexicon ("hsb.grm")
     * check & replace in directory inputs/grammar
-* a list ("adptest.flst") of audio recordings and matching transcripts
+* a list ("dsb.flst") of audio recordings and matching transcripts
     * check & replace list in directory inputs/flists
-    * example audio data and transcripts can be found in "inputs/sig" and "inputs/trl"
+    * example for autogeneration: (cd inputs/recordings/ && find . -name "*.wav" | sed -e "s/\.\/sig\///" -e "s/\.wav//") > inputs/flists/dsb.flst
+    * example audio data and transcripts can be found in "inputs/recordings/sig" and "inputs/recordings/trl"
         * audio files should be in wav format mono 16kHz
         * transcripts must match the word loop lexicon (check case!) and be one word per line
 	* please consult https://github.com/ZalozbaDev/speech_recognition_corpus_creation before creating own recordings!
