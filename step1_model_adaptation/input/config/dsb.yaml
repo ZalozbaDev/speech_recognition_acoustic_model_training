@@ -1,7 +1,7 @@
 # Configuration file
 
 source: '3_20.hmm'
-target: 'hsb.hmm'
+target: 'dsb.hmm'
 
 gauss_tie: false
 

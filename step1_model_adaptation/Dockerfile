@@ -51,7 +51,7 @@ RUN cd dLabPro/programs/python && ./setup.py build && ./setup.py install
 # create folder and copy all files
 RUN mkdir /adaptation
 
-ADD input/config/hsb.yaml /adaptation
+ADD input/config/dsb.yaml /adaptation
 ADD input/scripts/mapAM.py /adaptation
 
 # hand-crafted file
@@ -62,7 +62,7 @@ RUN cp db-hsb-asr/model/default/3_20.hmm                    /adaptation/
 RUN cp db-hsb-asr/model/default/feainfo.object              /adaptation/
 
 # now actually run the adaptation
-RUN cd /adaptation/ && chmod 755 mapAM.py && UASR_HOME="dummy" ./mapAM.py hsb.yaml
+RUN cd /adaptation/ && chmod 755 mapAM.py && UASR_HOME="dummy" ./mapAM.py dsb.yaml
 
 # just a default instruction, might be handy
 CMD ["/bin/bash"]
@@ -72,6 +72,5 @@ CMD ["/bin/bash"]
 #########################################################
 
 ## mkdir -p output && rm -rf ./output/* 
-## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /adaptation/hsb.hmm                                                     /output/
+## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /adaptation/dsb.hmm                                                     /output/
 ## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /adaptation/feainfo.object                                              /output/
-## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step1 cp /adaptation/classes.txt                                                 /output/

@@ -8,13 +8,12 @@ Inputs:
 
 * existing German acoustic model ("3_20.hmm") and statistics ("feainfo.object")
     * see https://github.com/ZalozbaDev/db-hsb-asr/tree/main/model/default
-* definition of phonemes ("phonmap_v3.txt") and pronunciation rules ("exceptions_v3.txt")
-    * see https://github.com/ZalozbaDev/speech_recognition_corpus_creation/tree/main/examples/ex5/input
-    * these will be used to generate the file "classes.txt" which is used for the adaptation
-* config file ("hsb.yaml")
+* phonemes defintion file ("input/config/classes.txt")
+    * there must be an 1:1 mapping of symbols to the conversion config file
+* conversion config file ("input/config/dsb.yaml")
     * the mappings must be in the same order as in the "classes.txt" file in order for the adaptation to work
 
-Configuration ("hsb.yaml"):
+Configuration ("dsb.yaml"):
 
 * Some file names can be adjusted if needed.
 * Mapping in the same order (left-hand-side) as in the generated "classes.txt":
@@ -28,7 +27,7 @@ Tools:
 
 * dLabPro signal processing and acoustic pattern recognition toolbox
     * see https://github.com/ZalozbaDev/dLabPro
-* "mapAM.py" script that performs the adaptation
+* "input/scripts/mapAM.py" script that performs the adaptation
 
 Running:
 
@@ -41,10 +40,7 @@ docker build -t speech_recognition_acoustic_model_training_step1 .
 
 Outputs:
 
-* adapted model "hsb.hmm" and (unmodified) "feainfo.object"
-* generated "classes.txt" and "hsb.grm" from phoneme map and pronunciation rules
-* generated lexicon "hsb_sampa.ulex" from all the provided speech corpora, and smaller "hsb_small_sampa.ulex" for adaptation only
-	* see "Dockerfile" on how to extract the files after successful container build
+* adapted model "dsb.hmm" and (unmodified) "feainfo.object"
 
 Evaluation:
 
