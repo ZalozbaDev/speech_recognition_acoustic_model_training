@@ -69,7 +69,7 @@ RUN mkdir -p uasr-data/db-hsb-asr/common/sig/BBAA uasr-data/db-hsb-asr/common/tr
 COPY inputs/recordings/sig/* uasr-data/db-hsb-asr/common/sig/BBAA/
 COPY inputs/recordings/trl/* uasr-data/db-hsb-asr/common/trl/BBAA/
 
-# now actually run the labelling
+# now actually run the labelling (append "-v2" resp "-v3" for more verbosity)
 RUN UASR_HOME="uasr" /dLabPro/bin.release/dlabpro UASR/scripts/dlabpro/HMM.xtp lab uasr-data/db-hsb-asr/HSB-01/info/label.cfg
 
 # just a default instruction, might be handy
