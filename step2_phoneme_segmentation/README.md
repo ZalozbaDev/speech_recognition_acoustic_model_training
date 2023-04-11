@@ -16,6 +16,8 @@ Preparations:
     * example for conversion: ./0003_convert_wav.sh inputs/recordings/sig/BBAA/0001/
 * check that transcripts are all upper case:
     * example for conversion: ./0004_convert_trl.sh inputs/recordings/trl/
+* (re-)generate grammar file from lexicon:
+    * example: ./0005_generate_grammar.sh inputs/grammar/dsb_lex.txt inputs/recordings/trl/ inputs/grammar/dsb.grm
     
 Inputs:
 
@@ -23,7 +25,7 @@ Inputs:
 	* check & replace in directory inputs/model
 * description of phonemes ("classes.txt") from step1
     * check & replace in directory inputs/info
-* word loop lexicon ("hsb.grm")
+* phonetic lexicon ("dsb.grm")
     * check & replace in directory inputs/grammar
 * a list ("dsb.flst") of audio recordings and matching transcripts
     * check & replace list in directory inputs/flists
