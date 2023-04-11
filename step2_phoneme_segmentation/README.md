@@ -4,6 +4,15 @@ This step automates the process of adding phonetic labels to audio recordings. T
 recordings later for training of a (new) acoustic model. The data and adapted model from the previous step is used
 for this purpose.
 
+Preparations:
+
+* check the acoustic properties of the recorded audio
+    * example: ./0001_corpAnalyze.sh inputs/sig/BBAA/0001/ 
+    * check the files that have warnings (can be false warnings)
+* check that the recorded audio matches the transcription
+    * example: ./0002_listen_and_verify_corpus.sh inputs/recordings/
+    * recordings can have several words, but there is a maximum length of a sentence!
+
 Inputs:
 
 * adapted acoustic model ("hsb.hmm") and statistics ("feainfo.object") from step1
