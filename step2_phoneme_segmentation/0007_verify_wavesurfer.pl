@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-@filelist = `find output/ -name "*.lab" | grep -v wavesurfer`;
+@filelist = `find output/ -name "*.lab"`;
 
 foreach (@filelist)
 {
@@ -9,7 +9,11 @@ foreach (@filelist)
 	chomp($tmp);
 	
 	$outfile = $tmp;
-	$outfile =~ s/\.lab/_wavesurfer\.lab/;
+
+	# this will fail when path starts with "lab/"
+	$outfile =~ s/\/lab\//\/sig\//;
+
+	$outfile =~ s/output\//inputs\/recordings\//;
 	
 	print "Open $tmp and write $outfile.\n";
 	
@@ -41,4 +45,14 @@ foreach (@filelist)
 	
 	close INHANDLE;
 	close OUTHANDLE;
+	
+	$sigfile = $outfile;
+	$sigfile =~ s/\.lab/\.wav/;
+	
+	system("wavesurfer $sigfile");
+	
+	system("rm $outfile");
+	
+	print "Press <Enter> for next file.";
+	my $inputline = <STDIN>;
 }

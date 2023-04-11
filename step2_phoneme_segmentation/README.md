@@ -64,10 +64,9 @@ Outputs:
 
 Evaluation:
 
+* Sanity of labelling should be checked because long labels are rejected during training.
+    * Check for warnings when running the "0006_check_label_length.pl" script, and possibly exclude these recordings from training.
 * Results can be viewed using the "wavesurfer" tool (https://www.speech.kth.se/wavesurfer/).
     * Assure that the correct "snack" bindings for TCL are installed (e.g. libsnack-alsa)
     * The unmodified label files are one-off (start time instead of end time for phonemes is used).
-    * Perl helper script "adjust_to_wavesurfer.pl" generates label files for use with wavesurfer.
-        * Script uses hard coded "output" search path and writes new files with "_wavesurfer" appended.
-* Sanity of labelling should be checked because long labels are rejected during training.
-    * Check for warnings when running the "check_label_length.pl" script, and possibly exclude these recordings from training.
+    * Perl helper script "0007_verify_wavesurfer.pl" generates label files for use with wavesurfer and calls the tool.
