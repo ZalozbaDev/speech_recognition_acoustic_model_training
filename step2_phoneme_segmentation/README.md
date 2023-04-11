@@ -12,7 +12,9 @@ Preparations:
 * check that the recorded audio matches the transcription
     * example: ./0002_listen_and_verify_corpus.sh inputs/recordings/
     * recordings can have several words, but there is a maximum length of a sentence!
-
+* check that recordings are in proper format:
+    * example for conversion: ./0003_convert_wav.sh inputs/recordings/sig/BBAA/0001/
+      
 Inputs:
 
 * adapted acoustic model ("hsb.hmm") and statistics ("feainfo.object") from step1
