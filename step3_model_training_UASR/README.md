@@ -45,4 +45,20 @@ Evaluation:
 
 * the resulting model of each split ("A_B.hmm") can be evaluated for performance
     * see "Dockerfile" for example commands
-    * extract models first to check which iteration was the best
+    * extract/list models first to check which iteration was the best
+* create HTML report with label confusion matrix manually:
+    * pick one model: 
+        * docker run -it speech_recognition_acoustic_model_training_step3_uasr  ls -l /uasr-data/db-hsb-asr/HSB-01/model/
+    * run evaluation (try to run in a wide terminal):
+        * docker run -it speech_recognition_acoustic_model_training_step3_uasr  /run_evaluation.sh 1_0
+    * copy the "Label confusion matrix" (2nd table) to a separate file
+        * use "rectangular selection" if the table was wrapped
+    * generate a HTML table out of the label confusion matrix
+        * cd report
+        * perl generate_html_table.pl label_confusion_matrix.txt label_confusion_matrix.html
+    * copy the report template and fill in the table
+        * cd report
+        * cp report.html.template report_1_0.html
+        * copy/paste the relevant infos
+        * view file with a browser
+

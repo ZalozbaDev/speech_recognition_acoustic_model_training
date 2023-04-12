@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Results</title>
+</head>
+<body>
+<h1>Summary</h1>
+<pre>
+
+SUMMARY_RESULTS_HERE!!!!!!!!!!!!!!!!
+
+</pre>
+<h2>Legend</h2>
+<pre>
+Correct frames/phonemes: C
+
+Substitutions: S
+
+Insertions: I
+
+Deletions: D
+
+Length of the reference sequence: LT = C+S+D
+
+Length of the recognized sequence: LR = C+S+I
+
+Correctness: COR = C/LT
+
+Accuracy: ACC = 1-(S+I+D)/LT = (C-I)/LT
+
+Lattice density: LD = LR/LT
+</pre>
+<br />
+<h1>Label confusion matrix</h1>
+
+TABLE HERE!!!!!!!!!!!!!!!!
+
+<!--
+<table border="1">
+<tbody>
+<tr>
+<td style="background-color:#ff0000">1</td><td style="background-color:#00ff00">2</td>
+</tr>
+</tbody>
+-->
+
+<h2>Legend</h2>
+<pre>
+The second column shows the recognized phonemes.
+
+The last row shows the phonemes that should have been recognized ("REF").
+</pre>
+</body>

@@ -80,17 +80,13 @@ CMD ["/bin/bash"]
 #########################################################
 
 ## mkdir -p output && rm -rf ./output/* 
-## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step3_UASR cp -r /uasr-data/db-hsb-asr/HSB-01/model/ /output/
+## docker run --mount type=bind,source="$(pwd)"/output,target=/output/ -it speech_recognition_acoustic_model_training_step3_uasr cp -r /uasr-data/db-hsb-asr/HSB-01/model/ /output/
 
 #########################################################
 # how to run evaluation of model(s)
 #########################################################
 
-## evaluate model X_Y.hmm
-## docker run -it speech_recognition_acoustic_model_training_step3_UASR  /run_evaluation.sh X_Y
-
-## evaluate model A_B.hmm and write label files
-## mkdir -p labels && rm -rf ./labels/*
-## docker run --mount type=bind,source="$(pwd)"/labels,target=/uasr-data/db-hsb-asr/HSB-01/log/ -it speech_recognition_acoustic_model_training_step3_UASR  /run_evaluation.sh X_Y LABELFILES
-
+## list available models and evaluate model X_Y.hmm
+## docker run -it speech_recognition_acoustic_model_training_step3_uasr  ls -l /uasr-data/db-hsb-asr/HSB-01/model/
+## docker run -it speech_recognition_acoustic_model_training_step3_uasr  /run_evaluation.sh X_Y
 
