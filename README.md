@@ -43,6 +43,11 @@ Die folgenden Schritte müssen durchgeführt werden (siehe README.md in den jewe
 * step3_model_training_UASR
     * Die Sprachaufnahmen mit den markierten Phonemen werden dazu verwendet, ein leeres akustisches Modell zu trainieren.
 
+Alle Beispiele wurden mit Hilfe der "docker" Technologie erstellt. Die Instruktionen im jeweiligen "Dockerfile" können jedoch
+so angepasst werden, dass die Beispiele auch ohne Docker ausgeführt werden können.
+    * Es sollte nur x86 als Prozesorarchitektur verwendet werden.
+    * Docker für Windows wurde nicht getestet, sollte aber funktionieren.
+    
 Die Anleitung, mit deren Hilfe die Beispiele erzeugt wurden, befindet sich im Verzeichnis "report".
 
 ## Authoren
