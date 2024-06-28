@@ -2,7 +2,7 @@
 
 if [ "$#" -ne 3 ]; then
 	echo "Please supply lexicon, labels and output file!"
-	echo "Example: ./0005_generate_grammar.sh inputs/grammar/dsb_lex.txt inputs/recordings/trl/ inputs/grammar/dsb.grm"
+	echo "Example: ./0005_generate_grammar.sh inputs/grammar/dsb_lex2.txt inputs/recordings/trl/ inputs/grammar/dsb.grm"
 	exit -1
 fi
 
