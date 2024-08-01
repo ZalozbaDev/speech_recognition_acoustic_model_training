@@ -17,8 +17,10 @@ Preparations:
 * check that transcripts are all upper case:
     * example for conversion: ./0004_convert_trl.sh inputs/recordings/trl/
 * (re-)generate grammar file from lexicon:
-    * example: ./0005_generate_grammar.sh inputs/grammar/dsb_lex.txt inputs/recordings/trl/ inputs/grammar/dsb.grm
-    
+    * example: ./0005_generate_grammar.sh inputs/grammar/dsb_lex.txt inputs/recordings/trl/BBAA/0001/ inputs/grammar/dsb.grm
+* (re-)generate matching filelist:
+    * example: ./0005_01_generate_filelist.sh inputs/recordings/trl/ BBAA/0001/
+
 Inputs:
 
 * adapted acoustic model ("dsb.hmm") and statistics ("feainfo.object") from step1
@@ -29,7 +31,7 @@ Inputs:
     * check & replace in directory inputs/grammar
 * a list ("dsb.flst") of audio recordings and matching transcripts
     * check & replace list in directory inputs/flists
-    * example for autogeneration: (cd inputs/recordings/ && find . -name "*.wav" | sed -e "s/\.\/sig\///" -e "s/\.wav//") > inputs/flists/dsb.flst
+    * use supplied script for autogeneration
     * example audio data and transcripts can be found in "inputs/recordings/sig" and "inputs/recordings/trl"
         * audio files should be in wav format mono 16kHz
         * transcripts must match the word loop lexicon (check case!) and be one word per line
