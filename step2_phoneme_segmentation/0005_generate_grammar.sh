@@ -2,14 +2,16 @@
 
 if [ "$#" -ne 3 ]; then
 	echo "Please supply lexicon, labels and output file!"
-	echo "Example: ./0005_generate_grammar.sh inputs/grammar/dsb_lex2.txt inputs/recordings/trl/ inputs/grammar/dsb.grm"
+	echo "Example: ./0005_generate_grammar.sh inputs/grammar/dsb_lex2.txt inputs/recordings/trl/BBAA/0001/ inputs/grammar/dsb.grm"
 	exit -1
 fi
 
 rm -f $3
 
 export PERLINFILE=$1
-export PERLOUTFILE=$3
+export PERLOUTFILE=$3.full
+
+# write the full lexicon to a temporary file
 
 perl -e '
 # print "in=$ENV{PERLINFILE} and out=$ENV{PERLOUTFILE}!"; 
@@ -29,12 +31,13 @@ close INHANDLE;
 close OUTHANDLE;
 '
 
-echo >> $3
-echo >> $3
+touch $3
 
+# grammar file shall include only words from the transcripts
 for i in $(find $2 -name "*.trl"); do
 	echo -n $i" "
 	
+	# write the loop grammar line
 	echo -n "GRM: (S) " >> $3
 	for k in $(cat $i); do
 		ONEWORD=$(echo $k | sed -e 's/\r//g')
@@ -46,4 +49,19 @@ for i in $(find $2 -name "*.trl"); do
 	
 	echo
 	echo >> $3
+
+	# filter full lexicon for required words
+	for k in $(cat $i); do
+		ONEWORD=$(echo $k | sed -e 's/\r//g')
+
+		cat $PERLOUTFILE | grep "LEX: $ONEWORD"$'\t'
+		( cat $PERLOUTFILE | grep "LEX: $ONEWORD"$'\t' ) >> $3
+	done
+	
 done
+
+# filter out duplicates
+sort -u $3 > $3.sorted
+mv $3.sorted $3
+
+
