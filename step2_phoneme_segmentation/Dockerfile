@@ -58,16 +58,19 @@ RUN mkdir -p uasr-data/db-hsb-asr/HSB-01/flists uasr-data/db-hsb-asr/HSB-01/gram
 
 COPY uasr-data/db-hsb-asr/HSB-01/info/* uasr-data/db-hsb-asr/HSB-01/info/
 
+# WARNING! Make sure that this order is not changed! Changes in "flists" invalidate cache, so that the rest is also refreshed.
+
 COPY inputs/flists/*         uasr-data/db-hsb-asr/HSB-01/flists/
 COPY inputs/grammar/*        uasr-data/db-hsb-asr/HSB-01/grammar/
 COPY inputs/info/classes.txt uasr-data/db-hsb-asr/HSB-01/info/
 COPY inputs/model/*          uasr-data/db-hsb-asr/HSB-01/model/
 
 # copy the to-be-labelled data (consider doing this differently with big amounts of data!)
-RUN mkdir -p uasr-data/db-hsb-asr/common/sig/BBAA uasr-data/db-hsb-asr/common/trl/BBAA uasr-data/db-hsb-asr/common/lab
+RUN mkdir -p uasr-data/db-hsb-asr/common/sig/ uasr-data/db-hsb-asr/common/trl/ uasr-data/db-hsb-asr/common/lab
 
-COPY inputs/recordings/sig/* uasr-data/db-hsb-asr/common/sig/BBAA/
-COPY inputs/recordings/trl/* uasr-data/db-hsb-asr/common/trl/BBAA/
+COPY inputs/recordings/sig uasr-data/db-hsb-asr/common/sig
+COPY inputs/recordings/trl uasr-data/db-hsb-asr/common/trl
+# RUN ls -l uasr-data/db-hsb-asr/common/
 
 # now actually run the labelling (append "-v2" resp "-v3" for more verbosity)
 RUN UASR_HOME="uasr" /dLabPro/bin.release/dlabpro UASR/scripts/dlabpro/HMM.xtp lab uasr-data/db-hsb-asr/HSB-01/info/label.cfg
