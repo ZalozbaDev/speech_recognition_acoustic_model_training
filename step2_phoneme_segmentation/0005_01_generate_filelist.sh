@@ -8,6 +8,9 @@ fi
 
 MY_FILELIST=$(pwd)/inputs/flists/dsb.flst
 
+# create folder if it does not exist yet
+mkdir -p $(pwd)/inputs/flists/
+
 rm -f $MY_FILELIST
 
 pushd $1

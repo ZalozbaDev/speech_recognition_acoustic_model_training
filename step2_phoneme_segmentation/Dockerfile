@@ -2,7 +2,7 @@ FROM debian:bullseye-slim
 MAINTAINER Daniel Sobe <daniel.sobe@sorben.com>
 
 # normal call
-# docker build -t speech_recognition_acoustic_model_training_step2 .
+# docker build -t speech_recognition_acoustic_model_training_step2 . --progress=plain
 
 # rebuild from scratch
 # docker build -t speech_recognition_acoustic_model_training_step2 . --no-cache
