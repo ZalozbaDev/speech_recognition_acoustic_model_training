@@ -19,7 +19,7 @@ Preparations:
 * (re-)generate grammar file from lexicon:
     * example: ./0005_00_generate_grammar.sh inputs/grammar/dsb_lex_mary.txt inputs/recordings/trl/BBAA/0001/ inputs/grammar/dsb.grm
 * (re-)generate matching filelist:
-    * example: ./0005_01_generate_filelist.sh inputs/recordings/trl/ BBAA/0001/
+    * example: ./0005_01_generate_filelist.sh inputs/recordings/sig/ BBAA/0001/
 
 Inputs:
 
