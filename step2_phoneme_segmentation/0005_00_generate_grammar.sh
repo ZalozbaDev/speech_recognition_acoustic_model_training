@@ -13,7 +13,7 @@ export PERLOUTFILE=$3.full
 
 # write the full lexicon to a temporary file
 
-echo "Opening $PERLINFILE and writing temporary file $PERLOUTFILE"
+# echo "Opening $PERLINFILE and writing temporary file $PERLOUTFILE"
 
 perl -e '
 # print "in=$ENV{PERLINFILE} and out=$ENV{PERLOUTFILE}!"; 
@@ -37,28 +37,40 @@ touch $3
 
 # grammar file shall include only words from the transcripts
 for i in $(find $2 -name "*.trl"); do
-	echo -n $i" "
+	# echo "Processing $i:"
 	
 	# write the loop grammar line
 	echo -n "GRM: (S) " >> $3
 	for k in $(cat $i); do
 		ONEWORD=$(echo $k | sed -e 's/\r//g')
 		
-		echo -n "$ONEWORD:$ONEWORD "
+		# echo -n "$ONEWORD:$ONEWORD "
 		echo -n "$ONEWORD:$ONEWORD " >> $3
 	done
 	echo -n "(F)" >> $3
 	
-	echo
+	# echo
+	# echo "Loop grammar done, adding lexikon entries"
+	
 	echo >> $3
 
 	# filter full lexicon for required words
 	for k in $(cat $i); do
 		ONEWORD=$(echo $k | sed -e 's/\r//g')
 
-		cat $PERLOUTFILE | grep "LEX: $ONEWORD"$'\t'
-		( cat $PERLOUTFILE | grep "LEX: $ONEWORD"$'\t' ) >> $3
+		# echo "Searching $ONEWORD in lexicon $PERLOUTFILE."
+		
+		if grep -q "LEX: $ONEWORD"$'\t' $PERLOUTFILE; then
+			# cat $PERLOUTFILE | grep "LEX: $ONEWORD"$'\t'
+			( cat $PERLOUTFILE | grep "LEX: $ONEWORD"$'\t' ) >> $3
+		else
+			echo "Error! Word $ONEWORD not found in lexicon! This must be fixed, check lexicon and $i!"
+			# exit 1
+		fi
 	done
+	
+	# echo "All lexicon entries added"
+	# echo
 	
 done
 
