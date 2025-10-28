@@ -17,7 +17,7 @@ Preparations:
 * check that transcripts are all upper case:
     * example for conversion: ./0004_convert_trl.sh inputs/recordings/trl/
 * (re-)generate grammar file from lexicon:
-    * example: ./0005_generate_grammar.sh inputs/grammar/dsb_lex.txt inputs/recordings/trl/BBAA/0001/ inputs/grammar/dsb.grm
+    * example: ./0005_00_generate_grammar.sh inputs/grammar/dsb_lex_mary.txt inputs/recordings/trl/BBAA/0001/ inputs/grammar/dsb.grm
 * (re-)generate matching filelist:
     * example: ./0005_01_generate_filelist.sh inputs/recordings/trl/ BBAA/0001/
 

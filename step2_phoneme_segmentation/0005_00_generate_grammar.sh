@@ -13,6 +13,8 @@ export PERLOUTFILE=$3.full
 
 # write the full lexicon to a temporary file
 
+echo "Opening $PERLINFILE and writing temporary file $PERLOUTFILE"
+
 perl -e '
 # print "in=$ENV{PERLINFILE} and out=$ENV{PERLOUTFILE}!"; 
 open (INHANDLE, "<:encoding(UTF-8)", "$ENV{PERLINFILE}") or die "Cannot open input file!";
