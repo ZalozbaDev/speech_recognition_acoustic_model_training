@@ -8,7 +8,7 @@ fi
 
 for i in $(find $1 -name "*.trl"); do
 	echo $i;
-	sed -e 's/\(.*\)/\U\1/' $i > $i.proc.trl
+	sed -e 's/\(.*\)/\U\1/' -e 's/\xef\xbb\xbf//' $i > $i.proc.trl
 	mv $i.proc.trl $i
 done
 
