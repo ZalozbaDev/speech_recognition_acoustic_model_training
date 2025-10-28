@@ -14,7 +14,7 @@ Preparations:
     * recordings can have several words, but there is a maximum length of a sentence!
 * check that recordings are in proper format:
     * example for conversion: ./0003_convert_wav.sh inputs/recordings/sig/BBAA/0001/
-* check that transcripts are all upper case:
+* check that transcripts are all upper case and no UTF-8 BOM:
     * example for conversion: ./0004_convert_trl.sh inputs/recordings/trl/
 * (re-)generate grammar file from lexicon:
     * example: ./0005_00_generate_grammar.sh inputs/grammar/dsb_lex_mary.txt inputs/recordings/trl/BBAA/0001/ inputs/grammar/dsb.grm
