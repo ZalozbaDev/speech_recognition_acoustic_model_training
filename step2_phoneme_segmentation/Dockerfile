@@ -2,7 +2,7 @@ FROM debian:bullseye-slim
 MAINTAINER Daniel Sobe <daniel.sobe@sorben.com>
 
 # normal call
-# docker build -t speech_recognition_acoustic_model_training_step2 . --progress=plain
+# docker build --build-arg SPEAKER_SUBDIRECTORY=BBAA/0001 -t speech_recognition_acoustic_model_training_step2 . --progress=plain
 
 # rebuild from scratch
 # docker build -t speech_recognition_acoustic_model_training_step2 . --no-cache
@@ -65,11 +65,13 @@ COPY inputs/grammar/*        uasr-data/db-hsb-asr/HSB-01/grammar/
 COPY inputs/info/classes.txt uasr-data/db-hsb-asr/HSB-01/info/
 COPY inputs/model/*          uasr-data/db-hsb-asr/HSB-01/model/
 
-# copy the to-be-labelled data (consider doing this differently with big amounts of data!)
-RUN mkdir -p uasr-data/db-hsb-asr/common/sig/ uasr-data/db-hsb-asr/common/trl/ uasr-data/db-hsb-asr/common/lab
+# copy the to-be-labelled data (better to specify a subdirectory)
+ARG SPEAKER_SUBDIRECTORY=
 
-COPY inputs/recordings/sig uasr-data/db-hsb-asr/common/sig
-COPY inputs/recordings/trl uasr-data/db-hsb-asr/common/trl
+RUN mkdir -p uasr-data/db-hsb-asr/common/sig/$SPEAKER_SUBDIRECTORY uasr-data/db-hsb-asr/common/trl/$SPEAKER_SUBDIRECTORY uasr-data/db-hsb-asr/common/lab
+
+COPY inputs/recordings/sig/$SPEAKER_SUBDIRECTORY uasr-data/db-hsb-asr/common/sig/$SPEAKER_SUBDIRECTORY
+COPY inputs/recordings/trl/$SPEAKER_SUBDIRECTORY uasr-data/db-hsb-asr/common/trl/$SPEAKER_SUBDIRECTORY
 # RUN ls -l uasr-data/db-hsb-asr/common/
 
 # now actually run the labelling (append "-v2" resp "-v3" for more verbosity)

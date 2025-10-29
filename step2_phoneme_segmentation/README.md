@@ -17,7 +17,7 @@ Preparations:
 * check that transcripts are all upper case and no UTF-8 BOM:
     * example for conversion: ./0004_convert_trl.sh inputs/recordings/trl/
 * (re-)generate grammar file from lexicon:
-    * example: ./0005_00_generate_grammar.sh inputs/grammar/dsb_lex_mary.txt inputs/recordings/trl/BBAA/0001/ inputs/grammar/dsb.grm
+    * example: ./0005_00_generate_grammar.sh inputs/grammar/dsb_lex_mary_transcripts.txt inputs/recordings/trl/BBAA/0001/ inputs/grammar/dsb.grm
 * (re-)generate matching filelist:
     * example: ./0005_01_generate_filelist.sh inputs/recordings/sig/ BBAA/0001/
 
@@ -56,7 +56,7 @@ Running:
     * see also inline comments
     
 ```console
-docker build -t speech_recognition_acoustic_model_training_step2 .
+docker build --build-arg SPEAKER_SUBDIRECTORY=BBAA/0001 -t speech_recognition_acoustic_model_training_step2 .
 ```
 
 Outputs:
