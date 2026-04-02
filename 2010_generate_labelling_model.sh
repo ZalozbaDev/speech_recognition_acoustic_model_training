@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -rf adaption/
+rm -rf adaptation/
 mkdir -p adaptation
 
 cp model_adaptation/dsb.yaml adaptation/
