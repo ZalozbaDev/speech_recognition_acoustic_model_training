@@ -21,6 +21,6 @@ cd ../adaptation
 
 echo $PYTHONPATH
 
-UASR_HOME="dummy" ./mapAM.py dsb.yaml
+UASR_HOME="dummy" python3.11 ./mapAM.py dsb.yaml
 
 popd

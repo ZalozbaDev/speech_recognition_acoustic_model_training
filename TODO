@@ -1,0 +1,4 @@
+- python install give hint to change dir first for "sudo make altinstall"
+- check dlabpro python wrapper include paths (for numpy)
+
+

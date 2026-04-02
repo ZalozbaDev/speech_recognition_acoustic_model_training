@@ -15,10 +15,10 @@ pushd programs/python
 which python
 which python3
 which python3.11
-./setup.py build 
+python3.11 setup.py build 
 # ./setup.py install 
 # ./setup.py install --prefix ../../
-./setup.py install --install-lib=../../lib/ --install-scripts=../../bin/
+python3.11 setup.py install --install-lib=../../lib/ --install-scripts=../../bin/
 popd
 
 popd
