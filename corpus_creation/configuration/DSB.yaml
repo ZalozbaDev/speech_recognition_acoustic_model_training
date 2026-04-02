@@ -2,11 +2,11 @@
 
 # place all text resources here
 input_txts:
-    - ../../generated/corpus/dsb_from_transcripts.vocab
+    - ../generated/corpus/dsb_from_transcripts.vocab
 
-phoneme_inventory:  "../../corpus_creation/configuration/phonmap_v1.txt"
-exceptions_file:    "../../corpus_creation/configuration/exceptions_v1.txt"
-output_dir:         "../../generated/corpus_output/"
+phoneme_inventory:  "../corpus_creation/configuration/phonmap_v1.txt"
+exceptions_file:    "../corpus_creation/configuration/exceptions_v1.txt"
+output_dir:         "../generated/corpus_output/"
 project_name:       "dsb_phonetics"
 database:           "db-dsb-asr"
 
