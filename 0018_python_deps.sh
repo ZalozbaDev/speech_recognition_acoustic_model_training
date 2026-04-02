@@ -7,7 +7,7 @@ if ! [ -e bin/activate ] ; then
 fi
 source bin/activate
 
-export PYTHONPATH=$(pwd)
+# export PYTHONPATH=$(pwd)/lib/
 
 pip3.10 install numpy matplotlib pyyaml setuptools cython
 
