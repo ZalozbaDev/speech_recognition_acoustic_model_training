@@ -16,26 +16,3 @@ git checkout 50a0237a2e297ee13e097e928b544a1b8cfc6a7b
 make -j8 -C programs/dlabpro RELEASE
 popd
 
-# compile python wrapper
-pushd dLabPro
-if ! [ -e bin/activate ] ; then
-	python3.9 -m venv .
-fi
-source bin/activate
-
-export PYTHONPATH=$(pwd)
-
-pip3.9 install numpy matplotlib pyyaml setuptools cython
-
-pushd programs/python 
-which python
-which python3
-which python3.9
-./setup.py build 
-# ./setup.py install 
-# ./setup.py install --prefix ../../
-./setup.py install --install-lib=../../lib/ --install-scripts=../../bin/
-popd
-
-popd
-
