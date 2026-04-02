@@ -19,3 +19,5 @@ for i in $(find $TRANSCRIPTPATH -name "*.trl"); do
 	sed -e 's/\(.*\)/\U\1/' -e 's/\xef\xbb\xbf//' $i >> $CORPUS_OUT
 	echo -n " " >> $CORPUS_OUT
 done
+
+ls -l $CORPUS_OUT
