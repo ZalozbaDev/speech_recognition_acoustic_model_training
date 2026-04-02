@@ -19,17 +19,18 @@ popd
 # compile python wrapper
 pushd dLabPro
 if ! [ -e bin/activate ] ; then
-	python3 -m venv .
+	python3.9 -m venv .
 fi
 source bin/activate
 
 export PYTHONPATH=$(pwd)
 
-pip3 install numpy matplotlib pyyaml setuptools cython
+pip3.9 install numpy matplotlib pyyaml setuptools cython
 
 pushd programs/python 
 which python
 which python3
+which python3.9
 ./setup.py build 
 # ./setup.py install 
 # ./setup.py install --prefix ../../
