@@ -2,15 +2,11 @@
 
 # place all text resources here
 input_txts:
-    #- ../resources/all.vocab
-    #- ../resources/cv.hsb
-    - ../resources/marytts_dsb.vocab
-    - ../resources/dsb_from_transcripts.vocab
-    #- ../resources/hsb_additional_9.vocab
+    - ../../generated/corpus/dsb_from_transcripts.vocab
 
-phoneme_inventory:  "../configuration/phonmap_v1.txt"
-exceptions_file:    "../configuration/exceptions_v1.txt"
-output_dir:         "../output/"
+phoneme_inventory:  "../../corpus_creation/configuration/phonmap_v1.txt"
+exceptions_file:    "../../corpus_creation/configuration/exceptions_v1.txt"
+output_dir:         "../../generated/corpus_output/"
 project_name:       "dsb_phonetics"
 database:           "db-dsb-asr"
 
@@ -23,22 +19,9 @@ num_sentences: 100         # maximal number of sentences in all splits
 min_duration:  0            # minimal duration in seconds of speech per sentence (0-3s)
 no_speakers:   1            # number of possible speakers per split
 user_vocab:
-        #- "all.vocab"    # use existing vocabularies to restrict the sentences from the corpus
         #- "user2.vocab"
 hcraft_lex:
         #- "custom.grm"    # use existing handcrafted lexicon to skip existing pronounciation generation
-        #- "handcrafted2.vocab"
-        #- ../resources/hcraft/hcraft_lexicon_1.grm
-        #- ../resources/hcraft/hcraft_lexicon_2.grm
-        #- ../resources/hcraft/hcraft_lexicon_3.grm
-        #- ../resources/hcraft/hcraft_lexicon_4.grm
-        #- ../resources/hcraft/hcraft_lexicon_5.grm
-        #- ../resources/hcraft/hcraft_lexicon_6.grm
-        #- ../resources/hcraft/hcraft_lexicon_7.grm
-        #- ../resources/hcraft/hcraft_lexicon_8.grm
-        #- ../resources/hcraft/hcraft_lexicon_9.grm
-        #- ../resources/hcraft/hcraft_example_phonreduction.grm
-        - ../resources/hcraft/hcraft_lexicon_dsb.grm
 
 hcraft_lex_map: #Maps the given phonemes from the handcrafted into ones from the phoneme inventory
     'I': 'ji'
