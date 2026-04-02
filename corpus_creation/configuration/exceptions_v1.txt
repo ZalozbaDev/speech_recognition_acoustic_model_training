@@ -1,0 +1,124 @@
+_B_$	p	MANDATORY	wob, chlěb, Serb, hrib, rub ("b" na kóncu słowa změny so na "p")
+_B_K	p	MANDATORY	wobkruća, wobknježa, wuhibki, hubkowaše, žabka, babka ("b" před k so změny na "p")
+_B_S	p	MANDATORY	serbskim, wobstejachu, wobswětowych, herbstwa ("b" před s so změny na "p")
+_B_Š	p	MANDATORY	wobšěrnym, serbšćiny, najlubšej, hłubši ("b" před š so změny na "p")
+_B_CH	p	MANDATORY	wobchody, wobchad, wobchować  ("b" před ch so změny na "p")
+
+_D_$	t	MANDATORY	lód, zawod, sad, před, zakład, zarjad ("d" na kóncu słowa změny so na "t")
+_D_K	t	MANDATORY	zrědka, doprědka, srědki, přehladka, wuslědkow ("d" před k změny so na "t")
+_D_S	t	MANDATORY	předsydki, předstajeja, wobsydstwo, susodstwje ("d" před s změny so na "t")
+_D_Š	t	MANDATORY	najradšo, najmłódšej, předšulskich, podšmórnyło, rědšo ("d" před š změny so na "t")
+_D_CH	t	MANDATORY	předchadźacym  ("d" před ch změny so na "t")
+_D_Č	*	MANDATORY	přeswědčeny, předčitać, wobswědčeja, wuswědčenju ("d" před č so šmórny)
+
+_DŹ_$	tS	MANDATORY	srjedź, pojědź, wosrjedź, přińdź, jědź, snadź ("dź" na kóncu słowa změny so na "tS")
+
+_E_DŹ	e	MANDATORY	chcedźa, srjedź, njeskedźbliwa, swjedźenskim, dowjedźe, posedźenja, rjedźe (začinjeny "e" před "dź")
+_E_J	e	MANDATORY	prawopisneje, poskitkej, stej, měšćanskeje, ćežkej, wjesnej, čornej (začinjeny "e" před "j")
+_E_Ń	e	ALTERNATIVE	mjeńšin, swjedźeń, dźeń, woteńdźeš, škleńcu, woheń, njeńdźe, prózdnjeńcowe (začinjeny "e" před "ń") - ale: wustajeńcu, kamjeń, Leńka (???)
+_E_Ž	e	ALTERNATIVE	tež, knježi, leži, hdźež (začinjeny "e" před "ž") - ale: kotrež, šćežce(???), Drježdźanach, ćežišća
+K_E_R	ji	ALTERNATIVE	najskerje, skerje (e --> ě)
+
+B_Ě_Ž	e	ALTERNATIVE	běžeć, poběžeć (ě --> e)
+M_Ě_J	e	ALTERNATIVE	změjeće, mějach (ě --> e)
+N_Ě_Š	1	ALTERNATIVE	něšto
+P_Ě_Š	1	ALTERNATIVE	spěšnje
+L_Ě_Ć	1	ALTERNATIVE	nalěćo
+L_Ě_Z	1	ALTERNATIVE	přelězć
+W_Ě_M	1	ALTERNATIVE	wěm
+
+Ě_H_#C	*	MANDATORY	přěhrać, něhdźe, wuzběhny, něhdy, lěhwo, přěhrać ("h" po "ě" před konsonantom so šmórny)
+_H_$	*	MANDATORY	sněh, žiwjenjoběh, wobsah ("h" na kóncu słowa so šmórny)
+_H_#C	*	MANDATORY	njewobhladujemy, zahroda, njehraje, wothłós, hrodźišću, hłós, hdźež, hłownu, hdyž, hladajće ("h" před konsonantom so šmórny)
+
+$_CH_#V	k	MANDATORY	chłódźa, Chrósćicach, chórje, chowanka, chětro, chlěbom (twjerdy "ch" za započatku, jeli njeslěduje "c", so změni na "k")
+$_CH_Ě	k	MANDATORY	CHĚŽA (dito)
+$_CH_L	k	MANDATORY	CHLĚB, CHLĚWJE (dito)
+$_CH_Ł	k	MANDATORY	CHŁÓDŹAKA, CHŁOSTAJOMNE (dito)
+$_CH_R	k	MANDATORY	CHRYSTUS, CHRÓSĆIC (dito)
+$_CH_W	k	MANDATORY	CHWALI, CHWAĆIC (dito)
+Ě_CH_	C	MANDATORY	spěchować, běchu, dźěchmy, třěchi, wuspěcha, wšěch, wujěcha, něchtó ("ch" po "ě" so změni na "C")
+$_CH_C	*	ALTERNATIVE	chcedźa, chce, chcyše, chcemy, chcu, chcych, chceće (twjerdy "ch" na započatku před "c" so šmórny)
+E_CH_	C	ALTERNATIVE	kładźechu, nańdźechu, přednjesechmy, přińdźechmy, nańdźech, potrjechi ("ch" po "e" so změni na "C")
+I_CH_	C	ALTERNATIVE	serbskich, młódšich, nichtó, jich, přichodnje ("ch" po "i" so změni na "C") - ale: přichadźachu, přichwata
+
+J_I_$	*	ALTERNATIVE	praji
+J_I_Ć	*	ALTERNATIVE	předstajić
+W_I_M	1	ALTERNATIVE	dźiwim (i --> 1)
+
+I_J_$	*	MANDATORY	studij, Handrij, Maćij, gymnazij, julij, kij ("j" na kóncu słowa po "i" so šmórny)
+E_J_I	*	MANDATORY	stejimy, meji, čejim (w kombinacije "eji" so "j" šmórny)
+; test: these are actually "alternative" rules, because one option is "don't modify"
+N_J_E	(j|*)	MANDATORY	njebjeskim, njetrjebać, njecha, njeplech (j --> *)
+B_J_E	(j|*)	MANDATORY	bjesada (j --> *)
+R_J_E	(j|*)	MANDATORY	rjenje, rjemjeslnik (j --> *)
+W_J_E	(j|*)	MANDATORY	wjeselo, skedźbliwje, wjelk, wjele, žiwjenja, zwjetša, wobsydstwje, wuměłstwje (j --> *)
+
+E_L_Ž	*	ALTERNATIVE	dokelž
+
+K_Ń_$	*	MANDATORY	tykń, wotamkń, dalse priklady??? ("ń" na kóncu słowa po "k" so šmórny)
+S_Ń_$	*	MANDATORY	njećisń, dalse priklady??? ("ń" na kóncu słowa po "s" so šmórny)
+I_Ń_	n	MANDATORY	přińdź, začińtaj ("ń" po "i" so změni na "n")
+#V_Ń_$	n	ALTERNATIVE	kamjeń, zakoń, tydźeń, woheń, swjedźeń ("ń" na kóncu słowa po wokalu změni so na "n")
+Ó_N_$	jn	ALTERNATIVE	són
+Ó_Ń_D	n	ALTERNATIVE	póńdu
+E_Ń_Š	n	ALTERNATIVE	mjeńšin, najrjeńši (ń --> n)
+E_Ń_K	n	ALTERNATIVE	ćeńke (ń --> n)
+
+_O_Ł	o	ALTERNATIVE	kołowokoło, dospołnosće, rozmołwy, zamołwitosći, powołaja, tołsta, hołbicu ("o" před "ł" je začinjeny) - ale: delnjołužiskim (hranica słowow)
+_O_W	o	ALTERNATIVE	powšitkowne, pruwowanski, hłownaj, jadrowej, towarstwow, institucijow, słowjanskej ("o" před "w" je začinjeny)
+M_O_J	U	ALTERNATIVE	budźemoj, chcychmoj ("oj" --> "ój")
+K_O_M	U	ALTERNATIVE	skomdźić (o --> ó)
+Ž_O_N	U	ALTERNATIVE	žonka
+
+Ž_Ó_N	O	ALTERNATIVE	žónka
+R_Ó_H	O	ALTERNATIVE	dróha (ale: róh)
+
+$_P_T	*	MANDATORY	ptačim (p na započatku słowa před t so šmórny)
+
+E_S_Ć	S	ALTERNATIVE	dowjesć (s --> š)
+O_S_Ć	S	ALTERNATIVE	mudrosć, radosće, starosć, sylnosć, wěrnosć (s --> š)
+
+#C_Ł_$	*	MANDATORY	zmysł, přinjesł, wotrostł, móhł ("ł" na kóncu po konsonanće so šmórny)
+#C_W_$	*	MANDATORY	čerw ("w" na kóncu słowa po konsonanće so šmórny)
+$_Ł_#C	*	MANDATORY	łžicy ("ł" na započatku před konsonantom so šmórny)
+$_W_R	*	MANDATORY	wrjesny, wrota ("w" na započatku słowa před nêkotrymi konsonantami so šmórny)
+$_W_S	*	MANDATORY	wsach, wsy (dito)  - ale: "we wsy"
+$_W_Š	*	MANDATORY	WŠĚDNE, WŠUDŹE (dito) 
+$_W_Z	*	MANDATORY	wzachu, wzdać (dito)
+$_W_Ž	*	MANDATORY	WŽIČKA (dito)
+$_W_Ć	*	MANDATORY	WĆIPNJE (dito)
+$_W_Č	*	MANDATORY	WČERAWŠEHO (dito)
+O_Ł_$	*	MANDATORY	poł, sokoł, šoł ("ł" na kóncu słowa po "o" so šmórny)
+O_W_$	*	MANDATORY	Błótow, etapow, wosadow, rjadow ("w" na kóncu słowa po "o" so šmórny)
+A_Ł_$	u	MANDATORY	widźał, jednał, Michał ("ł" na kóncu słowa po "a" so změni na "u")
+A_W_$	u	MANDATORY	staw ("w" na kóncu słowa po "a" so změni na "u")
+I_Ł_$	u	MANDATORY	rozsudźił, stworił, přełožił ("ł" na kóncu słowa po "i" so změni na "u")
+Y_Ł_$	u	MANDATORY	PŘIZAMKNYŁ, ... ("ł" na kóncu słowa po "y" so změni na "u")
+; tricky rules
+#V_W_#C	u	MANDATORY	přestawce, Žitawčanow, najnowšim, stawje, nawróća, zjawnje, sadowcami, bratrowska, powšitkownych, kralownu, sportowni ("w" před konsonantom změni so na "u") 
+O_W_#C	*	ALTERNATIVE	sadowcami, bratrowska, powšitkownych, kralownu, sportowni --> druhdy so W wuwosta
+O_Ł_#C	u	MANDATORY	zamołwiteho, žołtu, rozmołwjał, namołwja, tołstu ("ł" po "o" před konsonantom so změni na "u")
+O_Ł_#C	*	ALTERNATIVE	dito, druhdy so wuwosta
+$_W_J	*	ALTERNATIVE	wjacorych ("wj" na započatku słowa so "w" šmórny) - ale: wjele, wječorach (hlej prawidlo "W_J_E		*") 
+; disabled:
+; #C_W_#C	u	MANDATORY	faluja prikĺady!
+; #C_W_J	*	ERROR		hlej prawidlo "W_J_E		*"
+
+; avoid duplicate phonemes
+$_T_Ř	*	MANDATORY	problem dwójny t so wotstroni za "tři" a "třě"
+T_Ř_I	ts	MANDATORY	kotřiž, třiróžku, tři, njeroztřihaš, jutřišeje, wótřiši, někotři (kombinacija "tři" so wurjekuje "tsi") - ale: problem dwójny t
+T_Ř_Ě	ts	MANDATORY	třěšneho, třěšny, třěćinje, třělić  (kombinacija "třě" so wurjekuje "tse") - ale: problem dwójny t
+
+A_Š_Ł	j S	MANDATORY	zašłosće, zašłe, našła ("j" so mjez "a" a "šł" zasuny)
+U_Š_Ł	j S	MANDATORY	wušło, dalše přikłady??? ("j" so mjez "u" a "šł" zasuny)
+
+M_Y_$	U	ALTERNATIVE	dyrbimy, chcemy, dźemy, bychmy ("y" na kóncu słowa --> U)
+
+#V_Z_K	s	MANDATORY	zwjazk, wotrězk, rjećazk, wurězki, rozkładźe, tyzku, pomazkami (po wokalu a před "k" změni so "z" na "s")
+_Z_$	s	ALTERNATIVE	mjez, bjez, naraz, wukaz, raz, z ("z" na kóncu słowa změny so na "s") - ale: druhdy tola jako "z"?
+
+_Ž_$	S	MANDATORY	kaž, tež, kotrež, dołhož, hdyž, jenož, dokelž, štož, ručež ("ž" na kóncu słowa so změni na "S")
+Ó_Ž_D	j Z	MANDATORY	kóždy, kóždolětnu, kóždeho, kóždu, kóžde, kóždemu ("j" so mjez "o" a "zd" zasuny)
+#V_Ž_K	S	MANDATORY	nałožki, chěžki, třiróžku, podłožki, nóžki, wotnožkow, knižku, hdźežkuli, hněžko, ćežko (po wokalu a před "k" změni so "ž" na "S")
+O_Ž_$	j S	ALTERNATIVE	jenož
