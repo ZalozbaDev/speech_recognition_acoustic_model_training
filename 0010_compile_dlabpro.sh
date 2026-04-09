@@ -16,6 +16,7 @@ git checkout 50a0237a2e297ee13e097e928b544a1b8cfc6a7b
 # hard-code python3.11 include paths
 git cherry-pick c231d0fe9f46959a226cdc6a6829d755a95b4b8f
 git cherry-pick 2f5a93d93c029787bffe642d44877cafebf0be2d
+git cherry-pick 6860f478a1d8e7f05dee1baceb3ab7daab4c2beb
 
 make -j8 -C programs/dlabpro RELEASE
 popd
