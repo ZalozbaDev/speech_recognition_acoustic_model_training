@@ -25,7 +25,7 @@ cp adaptation/feainfo.object uasr-data/db-hsb-asr/HSB-01/model/
 # generate file list and copy resources
 TARGETSIGPATH=uasr-data/db-hsb-asr/common/sig
 TARGETTRLPATH=uasr-data/db-hsb-asr/common/trl
-TARGETLABPATH=uasr-data/db-hsb-asr/common/trl
+TARGETLABPATH=uasr-data/db-hsb-asr/common/lab
 mkdir -p ${TARGETSIGPATH}
 mkdir -p ${TARGETTRLPATH}
 mkdir -p ${TARGETLABPATH}
