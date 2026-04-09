@@ -9,7 +9,7 @@ source bin/activate
 
 # export PYTHONPATH=$(pwd)/lib/
 
-pip3.11 install numpy matplotlib pyyaml setuptools cython
+pip3.11 install numpy==1.26.4 matplotlib pyyaml setuptools cython
 
 pushd programs/python 
 which python
