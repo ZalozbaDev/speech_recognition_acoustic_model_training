@@ -36,7 +36,7 @@ for i in $(find $TRANSCRIPTPATH -name "*.trl"); do
 	SOURCESIGNAL=$(echo $i | sed -e 's/\/trl\//\/sig\//' -e 's/\.trl/\.wav/')
 	TARGETSIGNAL=${TARGETSIGPATH}/$(basename $i trl)wav
 	TARGETTRANSCRIPT=${TARGETTRLPATH}/$(basename $i)
-	FLISTENTRY=$(echo ${TARGETSIGNAL} | sed -e 's/\.wav//')
+	FLISTENTRY=$(basename $i | sed -e 's/\.trl//')
 	
 	echo "SOURCESIGNAL:     ${SOURCESIGNAL}"
 	echo "TARGETSIGNAL:     ${TARGETSIGNAL}"
@@ -57,4 +57,4 @@ done
 # copy config file
 cp labelling_cfg/label.cfg uasr-data/db-hsb-asr/HSB-01/info/
 
-# UASR_HOME="uasr" ./dLabPro/bin.release/dlabpro UASR/scripts/dlabpro/HMM.xtp lab uasr-data/db-hsb-asr/HSB-01/info/label.cfg
+UASR_HOME="uasr" ./dLabPro/bin.release/dlabpro UASR/scripts/dlabpro/HMM.xtp lab uasr-data/db-hsb-asr/HSB-01/info/label.cfg
