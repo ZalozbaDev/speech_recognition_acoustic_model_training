@@ -2,6 +2,7 @@
 
 # place all text resources here
 input_txts:
+    - ../corpus_creation/resources/minimal_graphemes.txt
     - ../generated/corpus/dsb_from_transcripts.vocab
 
 phoneme_inventory:  "../corpus_creation/configuration/phonmap_v1.txt"

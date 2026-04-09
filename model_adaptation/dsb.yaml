@@ -10,9 +10,7 @@ mapping:
     '.': ['.']
     '#': ['#']
     '1': ['@']
-    'C': ['C']
     'E': ['E']
-    'J': ['j','n']
     'O': ['O']
     'Q': ['Q']
     'S': ['S']
@@ -42,10 +40,15 @@ mapping:
     'tS': ['t','S']
     'ts': ['t','s']
     'u' : ['u:']
-    'v': ['v']
     'w': ['v']
     'x' : ['x']
     'z': ['z']
-     
+
+
+#     'C': ['C']
+#     'J': ['j','n']
+#     'v': ['v']
+
+
 #classes file to validate
 classfile: "classes.txt"
