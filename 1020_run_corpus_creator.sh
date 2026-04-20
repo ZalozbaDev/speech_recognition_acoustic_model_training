@@ -8,3 +8,9 @@ python3 ../corpus_creation/tooling/corpus_creator.py ../corpus_creation/configur
 popd
 
 ls -lR generated/corpus_output/uasr_configurations/
+
+echo "!!!!!!!!!!!!!! Removed lines from corpus !!!!!!!!!!!!!!!!!"
+
+cat generated/corpus_output/corpus/dsb_phonetics.rmvd
+
+echo "!!!!!!!!!!!!!! Removed lines from corpus !!!!!!!!!!!!!!!!!"
