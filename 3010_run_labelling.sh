@@ -43,18 +43,23 @@ for i in $(find $TRANSCRIPTPATH -name "*.trl"); do
 	echo "TARGETTRANSCRIPT: ${TARGETTRANSCRIPT}"
 	echo "FLISTENTRY:       ${FLISTENTRY}"
 	
-	# convert and copy wave file
-	sox ${SOURCESIGNAL} -r 16000 -c 1 -b 16 ${TARGETSIGNAL}
-	
-	# convert and copy transcript
-	sed -e 's/\(.*\)/\U\1/' -e 's/\xef\xbb\xbf//' $i > ${TARGETTRANSCRIPT}
-	
-	# add entry to filelist
-	echo ${FLISTENTRY} >> uasr-data/db-hsb-asr/HSB-01/flists/dsb.flst
+	if [ -e ${SOURCESIGNAL} ]; then
+		
+		# convert and copy wave file
+		sox ${SOURCESIGNAL} -r 16000 -c 1 -b 16 ${TARGETSIGNAL}
+		
+		# convert and copy transcript (must exist)
+		sed -e 's/\(.*\)/\U\1/' -e 's/\xef\xbb\xbf//' $i > ${TARGETTRANSCRIPT}
+		
+		# add entry to filelist
+		echo ${FLISTENTRY} >> uasr-data/db-hsb-asr/HSB-01/flists/dsb.flst
+	else
+		echo "Skipping $i because required file ${SOURCESIGNAL} not found!"
+	fi
 	
 done
 
 # copy config file
 cp labelling_cfg/label.cfg uasr-data/db-hsb-asr/HSB-01/info/
 
-UASR_HOME="uasr" ./dLabPro/bin.release/dlabpro UASR/scripts/dlabpro/HMM.xtp lab uasr-data/db-hsb-asr/HSB-01/info/label.cfg
+UASR_HOME="uasr" ./dLabPro/bin.release/dlabpro UASR/scripts/dlabpro/HMM.xtp lab uasr-data/db-hsb-asr/HSB-01/info/label.cfg -v3
