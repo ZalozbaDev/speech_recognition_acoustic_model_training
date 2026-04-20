@@ -6,11 +6,11 @@ SPEAKERS_TEST=" BBAG BBAH "
 
 # clean start after labelling
 rm -rf uasr-data/
-mkdir -p uasr-data/db-hsb-asr/flists uasr-data/db-hsb-asr/grammar uasr-data/db-hsb-asr/log uasr-data/db-hsb-asr/info
+mkdir -p uasr-data/db-hsb-asr/HSB-01/flists uasr-data/db-hsb-asr/HSB-01/grammar uasr-data/db-hsb-asr/HSB-01/log uasr-data/db-hsb-asr/HSB-01/info
 
 # generated files from corpus creation
-cp generated/corpus_output/uasr_configurations/info/classes.txt uasr-data/db-hsb-asr/info/
-cp generated/corpus_output/uasr_configurations/info/default.itp uasr-data/db-hsb-asr/info/
+cp generated/corpus_output/uasr_configurations/info/classes.txt uasr-data/db-hsb-asr/HSB-01/info/
+cp generated/corpus_output/uasr_configurations/info/default.itp uasr-data/db-hsb-asr/HSB-01/info/
 
 # generate file lists and copy resources
 TARGETSIGPATH=uasr-data/db-hsb-asr/common/sig
@@ -27,7 +27,7 @@ for SPEAKERS in ${SPEAKERS_TRAIN} ; do
 		TARGETSIGNAL=$(echo $SOURCESIGNAL | sed -e 's/recordings/uasr-data\/db-hsb-asr\/common/')
 		
 		TARGETLAB=$(echo $FILEENTRY | sed -e 's/recordings/uasr-data\/db-hsb-asr\/common/')
-		FLISTENTRY=$(echo $TARGETSIGNAL | sed -e 's/\.wav//')
+		FLISTENTRY=$(echo $TARGETSIGNAL | sed -e 's/uasr-data\/db-hsb-asr\/common\/sig\///' -e 's/\.wav//')
 
 		mkdir -p $(dirname $TARGETSIGNAL)
 		mkdir -p $(dirname $TARGETLAB)
@@ -42,7 +42,7 @@ for SPEAKERS in ${SPEAKERS_TRAIN} ; do
 			cp $FILEENTRY $(dirname $TARGETLAB)			
 					
 			# add entry to filelist
-			echo ${FLISTENTRY} >> uasr-data/db-hsb-asr/flists/train.flst
+			echo ${FLISTENTRY} >> uasr-data/db-hsb-asr/HSB-01/flists/train.flst
 		else
 			echo "Skipping $FILEENTRY because required file ${SOURCESIGNAL} not found!"
 		fi
@@ -61,7 +61,7 @@ for SPEAKERS in ${SPEAKERS_TEST} ; do
 		TARGETSIGNAL=$(echo $SOURCESIGNAL | sed -e 's/recordings/uasr-data\/db-hsb-asr\/common/')
 		
 		TARGETLAB=$(echo $FILEENTRY | sed -e 's/recordings/uasr-data\/db-hsb-asr\/common/')
-		FLISTENTRY=$(echo $TARGETSIGNAL | sed -e 's/\.wav//')
+		FLISTENTRY=$(echo $TARGETSIGNAL | sed -e 's/uasr-data\/db-hsb-asr\/common\/sig\///' -e 's/\.wav//')
 
 		mkdir -p $(dirname $TARGETSIGNAL)
 		mkdir -p $(dirname $TARGETLAB)
@@ -76,7 +76,7 @@ for SPEAKERS in ${SPEAKERS_TEST} ; do
 			cp $FILEENTRY $(dirname $TARGETLAB)			
 					
 			# add entry to filelist
-			echo ${FLISTENTRY} >> uasr-data/db-hsb-asr/flists/test.flst
+			echo ${FLISTENTRY} >> uasr-data/db-hsb-asr/HSB-01/flists/test.flst
 		else
 			echo "Skipping $FILEENTRY because required file ${SOURCESIGNAL} not found!"
 		fi
